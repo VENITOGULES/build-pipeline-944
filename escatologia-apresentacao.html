@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profecias Bíblicas & Eventos Mundiais — Uma Investigação Equilibrada</title>
+<style>
+  :root{
+    --bg:#0d1117; --bg2:#121a24; --panel:#161e2b; --panel2:#1c2636;
+    --ink:#e8edf5; --muted:#9fb0c4; --line:#26344a;
+    --gold:#d8b25a; --gold2:#f0d489; --crim:#b8324a; --crim2:#e2566c;
+    --teal:#2bb3a3; --blue:#5b8def; --purple:#9a7cf0;
+    --green:#3fb96b; --yellow:#e6b93f; --orange:#e08a3c; --red:#d65151;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:radial-gradient(1200px 700px at 80% -10%,#1a2740 0%,var(--bg) 55%) fixed;
+    color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:17px;
+  }
+  a{color:var(--gold2);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* NAV */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(13,17,23,.82);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .topbar .wrap{max-width:1180px;margin:0 auto;display:flex;align-items:center;
+    gap:14px;padding:10px 20px;flex-wrap:wrap;}
+  .brand{font-family:var(--serif);font-weight:600;letter-spacing:.3px;color:var(--gold2);font-size:18px;white-space:nowrap}
+  .navlinks{display:flex;gap:6px;flex-wrap:wrap;font-size:13px}
+  .navlinks a{color:var(--muted);padding:4px 9px;border-radius:999px;border:1px solid transparent}
+  .navlinks a:hover{color:var(--ink);border-color:var(--line);background:var(--panel);text-decoration:none}
+
+  /* HERO */
+  .hero{max-width:1180px;margin:0 auto;padding:70px 24px 30px;text-align:center}
+  .hero .kicker{letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-size:13px;font-weight:600}
+  .hero h1{font-family:var(--serif);font-size:clamp(32px,6vw,60px);line-height:1.05;margin:14px 0 8px;
+    background:linear-gradient(180deg,#fff,#c9b986);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{color:var(--muted);max-width:760px;margin:8px auto 0;font-size:19px}
+  .hero .meta{margin-top:22px;color:var(--muted);font-size:14px}
+  .stars{height:2px;width:140px;margin:26px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+  /* LAYOUT */
+  main{max-width:1180px;margin:0 auto;padding:10px 24px 90px}
+  section{padding:46px 0;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:none}
+  h2.s-title{font-family:var(--serif);font-size:clamp(24px,3.6vw,36px);margin:0 0 4px;color:var(--gold2)}
+  .s-num{display:inline-block;font-family:var(--serif);font-size:14px;color:var(--gold);
+    border:1px solid var(--gold);border-radius:999px;padding:2px 12px;margin-bottom:14px;letter-spacing:1px}
+  .lead{color:var(--muted);font-size:18px;max-width:880px;margin:0 0 20px}
+
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:820px){.g2,.g3{grid-template-columns:1fr}}
+
+  .card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);
+    border-radius:16px;padding:20px 22px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .card h3{margin:0 0 8px;font-family:var(--serif);font-size:20px;color:var(--ink)}
+  .card h4{margin:14px 0 4px;font-size:15px;color:var(--gold2);letter-spacing:.3px;text-transform:uppercase}
+  .card p{margin:6px 0;color:var(--ink)}
+  .card.lk{border-left:4px solid var(--gold)}
+  .card.warn{border-left:4px solid var(--crim2)}
+
+  blockquote{margin:14px 0;padding:14px 18px;border-left:4px solid var(--gold);
+    background:rgba(216,178,90,.07);border-radius:0 12px 12px 0;font-family:var(--serif);font-size:18px;color:#f2ead4}
+  blockquote cite{display:block;margin-top:6px;font-size:13px;color:var(--muted);font-style:normal;font-family:var(--sans)}
+
+  /* BADGES (classification) */
+  .badge{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;
+    padding:2px 10px;border-radius:999px;white-space:nowrap;line-height:1.6}
+  .b-ok{background:rgba(63,185,107,.16);color:#7fe6a3;border:1px solid #2f7a4d}
+  .b-pos{background:rgba(230,185,63,.16);color:#f0d479;border:1px solid #8a7128}
+  .b-spec{background:rgba(224,138,60,.16);color:#f0ab74;border:1px solid #8a5a2a}
+  .b-no{background:rgba(214,81,81,.16);color:#f08a8a;border:1px solid #8a3030}
+
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 0}
+
+  /* lists */
+  ul.clean{list-style:none;padding:0;margin:10px 0}
+  ul.clean li{padding:7px 0 7px 28px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.clean li:before{content:"";position:absolute;left:6px;top:14px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+  ul.clean li:last-child{border-bottom:none}
+
+  .pro li:before{background:var(--green)}
+  .con li:before{background:var(--red)}
+
+  /* tables */
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin:14px 0}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+  th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{background:var(--panel2);color:var(--gold2);font-size:13px;letter-spacing:.4px;text-transform:uppercase;position:sticky;top:0}
+  tbody tr:hover{background:rgba(91,141,239,.06)}
+  td.center,th.center{text-align:center}
+
+  .prob{font-weight:800;font-size:13px;padding:3px 9px;border-radius:8px;white-space:nowrap}
+  .p1{background:rgba(214,81,81,.18);color:#f0a0a0}     /* muito improvável */
+  .p2{background:rgba(224,138,60,.18);color:#f0b888}    /* improvável */
+  .p3{background:rgba(230,185,63,.18);color:#f0d889}    /* possível */
+  .p4{background:rgba(91,141,239,.18);color:#a8c2f5}    /* provável */
+  .p5{background:rgba(63,185,107,.18);color:#9ce8ba}    /* muito provável */
+
+  /* two-column compare */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  @media(max-width:820px){.compare{grid-template-columns:1fr}}
+  .compare>div{padding:18px 20px}
+  .compare .yes{background:rgba(63,185,107,.06)}
+  .compare .no{background:rgba(214,81,81,.06);border-left:1px solid var(--line)}
+  .compare h4{margin-top:0}
+
+  /* timeline */
+  .tl{position:relative;margin:20px 0;padding-left:26px}
+  .tl:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),var(--crim2))}
+  .tl .ev{position:relative;margin:0 0 18px;padding:2px 0}
+  .tl .ev:before{content:"";position:absolute;left:-23px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(216,178,90,.18)}
+  .tl .yr{font-family:var(--serif);color:var(--gold2);font-weight:700;font-size:18px}
+
+  .pill{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:999px;
+    padding:3px 11px;font-size:12.5px;color:var(--muted);margin:3px 4px 3px 0}
+
+  .note{font-size:13.5px;color:var(--muted);font-style:italic}
+  .big-disclaim{background:linear-gradient(180deg,#1b2333,#141b27);border:1px solid var(--crim);
+    border-radius:16px;padding:18px 22px;margin:18px 0}
+  .big-disclaim h3{color:var(--crim2)}
+
+  footer{max-width:1180px;margin:0 auto;padding:30px 24px 70px;color:var(--muted);font-size:13.5px;text-align:center;border-top:1px solid var(--line)}
+  .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--panel2);border:1px solid var(--line);
+    border-radius:6px;padding:1px 7px;font-size:13px}
+  .toc{columns:2;gap:18px}
+  @media(max-width:680px){.toc{columns:1}}
+  .toc a{display:block;padding:6px 0;border-bottom:1px dashed var(--line);color:var(--ink)}
+  .scroll-top{position:fixed;right:18px;bottom:18px;background:var(--gold);color:#1a1404;border:none;
+    width:46px;height:46px;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.4);opacity:.92}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="brand">✦ Apocalipse & Atualidade</span>
+    <nav class="navlinks">
+      <a href="#inicio">Início</a>
+      <a href="#legenda">Legenda</a>
+      <a href="#e1">1 · Profecias</a>
+      <a href="#e2">2 · Eufrates</a>
+      <a href="#e3">3 · IA</a>
+      <a href="#e4">4 · 2040</a>
+      <a href="#e5">5 · Israel</a>
+      <a href="#e6">6 · Gogue</a>
+      <a href="#e7">7 · Economia</a>
+      <a href="#e8">8 · Mundo</a>
+      <a href="#e9">9 · 50 Teorias</a>
+      <a href="#e10">10 · Matriz</a>
+      <a href="#e11">11 · Síntese</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero" id="inicio">
+  <div class="kicker">Uma investigação equilibrada e ilustrada</div>
+  <h1>Profecias Bíblicas &amp; o Mundo de Hoje</h1>
+  <p class="sub">Daniel, Apocalipse e Ezequiel encontram a geopolítica, a inteligência artificial, a água do Eufrates e o ano 2040 — separando com honestidade o que é <strong>fato</strong>, <strong>hipótese</strong>, <strong>especulação</strong> e <strong>profecia</strong>.</p>
+  <div class="stars"></div>
+  <p class="meta">Material para conversa &nbsp;•&nbsp; 11 etapas &nbsp;•&nbsp; múltiplas tradições teológicas &nbsp;•&nbsp; leitura ~25 min</p>
+</header>
+
+<main>
+
+<!-- LEGENDA / COMO LER -->
+<section id="legenda">
+  <span class="s-num">Como ler esta apresentação</span>
+  <h2 class="s-title">Um pacto de honestidade</h2>
+  <p class="lead">A maior tentação ao falar de profecia é transformar <em>palpites</em> em <em>certezas</em>. Para evitar isso, <strong>cada afirmação relevante recebe uma etiqueta de confiança</strong>. Use-as como um filtro durante a conversa.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h4>Etiquetas de confiança</h4>
+      <div class="legend">
+        <span class="badge b-ok">✅ Confirmado</span>
+        <span class="badge b-pos">🟡 Possível</span>
+        <span class="badge b-spec">🟠 Especulativo</span>
+        <span class="badge b-no">🔴 Sem evidência</span>
+      </div>
+      <ul class="clean" style="margin-top:14px">
+        <li><span class="badge b-ok">✅ Confirmado</span> — fato histórico, científico ou textual amplamente aceito.</li>
+        <li><span class="badge b-pos">🟡 Possível</span> — plausível, com evidência parcial ou interpretação razoável.</li>
+        <li><span class="badge b-spec">🟠 Especulativo</span> — conexão imaginável, mas sem base sólida; depende de pressupostos.</li>
+        <li><span class="badge b-no">🔴 Sem evidência</span> — afirmação sem suporte factual; muitas vezes lenda urbana ou conspiração.</li>
+      </ul>
+    </div>
+    <div class="card lk">
+      <h4>As quatro lentes clássicas de interpretação</h4>
+      <p>Quase toda divergência entre cristãos sobre o Apocalipse nasce de qual <strong>lente</strong> se usa:</p>
+      <ul class="clean">
+        <li><strong>Preterista</strong> — a maior parte já se cumpriu no séc. I (Roma/Jerusalém, ano 70 d.C.).</li>
+        <li><strong>Historicista</strong> — descreve toda a história da Igreja em sequência (visão da Reforma).</li>
+        <li><strong>Futurista</strong> — os capítulos 4–22 ainda vão acontecer (visão dispensacionalista popular hoje).</li>
+        <li><strong>Idealista / Simbólica</strong> — retrata o conflito atemporal entre bem e mal, sem cronograma.</li>
+      </ul>
+      <p class="note">Pessoas sinceras e eruditas defendem cada uma delas. Não há consenso — e isso é parte da história.</p>
+    </div>
+  </div>
+
+  <div class="big-disclaim card warn" style="margin-top:18px">
+    <h3>⚠️ Nota de equilíbrio (leia antes de começar)</h3>
+    <p>Esta apresentação <strong>não prevê o futuro</strong> nem afirma datas. Ela organiza o que diversos teólogos, cientistas e analistas <em>dizem</em>, mostrando os dois lados. A tradição cristã majoritária — de Agostinho a hoje — adverte explicitamente contra a fixação de datas (<em>Mateus 24:36: "daquele dia e hora ninguém sabe"</em>). Trate coincidências como <strong>convites à reflexão</strong>, não como provas.</p>
+  </div>
+</section>
+
+<!-- ETAPA 1 -->
+<section id="e1">
+  <span class="s-num">Etapa 1</span>
+  <h2 class="s-title">As profecias bíblicas relevantes</h2>
+  <p class="lead">Um mapa das passagens mais citadas no debate escatológico, com seu contexto e as quatro leituras possíveis.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Passagem</th><th>Tema central</th><th>Contexto histórico</th><th>Leitura futurista</th><th>Leitura simbólica/preterista</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Daniel 2 &amp; 7</strong></td><td>Quatro impérios; "pedra" do Reino de Deus; quatro feras</td><td>Exílio babilônico (séc. VI a.C.)</td><td>O 4º império (Roma) renasce; "10 chifres" = coalizão final</td><td>Babilônia→Pérsia→Grécia→Roma; o Reino já irrompeu em Cristo</td></tr>
+        <tr><td><strong>Daniel 9</strong></td><td>As "70 semanas"; o "príncipe que há de vir"</td><td>Oração de Daniel pela restauração</td><td>Última "semana" = Tribulação de 7 anos ainda futura</td><td>Cumprida na 1ª vinda de Cristo e na queda de Jerusalém (70 d.C.)</td></tr>
+        <tr><td><strong>Ezequiel 38–39</strong></td><td>Gogue, da terra de Magogue, invade Israel</td><td>Pós-exílio; Israel "restaurado"</td><td>Coalizão liderada pelo norte (lida hoje como Rússia/Irã/Turquia)</td><td>Símbolo do mal arquetípico derrotado por Deus, não nação literal</td></tr>
+        <tr><td><strong>Ezequiel 40–48</strong></td><td>O Templo restaurado e o rio que cura</td><td>Visão de consolo no exílio</td><td>Terceiro Templo literal no milênio</td><td>Visão idealizada da presença de Deus; cumprida em Cristo/Igreja</td></tr>
+        <tr><td><strong>Zacarias 12 &amp; 14</strong></td><td>Jerusalém cercada; "olharão para aquele que traspassaram"</td><td>Pós-exílio, reconstrução</td><td>Cerco final das nações; volta física a Jerusalém</td><td>Cumprimento messiânico já iniciado; linguagem apocalíptica</td></tr>
+        <tr><td><strong>Isaías 13; 17; 19</strong></td><td>Oráculos contra Babilônia, Damasco, Egito</td><td>Ameaças assíria/babilônica (séc. VIII a.C.)</td><td>"Damasco deixará de ser cidade" (Is 17) lido como evento futuro</td><td>Juízos históricos já cumpridos contra aqueles impérios</td></tr>
+        <tr><td><strong>Mateus 24 / Marcos 13 / Lucas 21</strong></td><td>"Sermão do Monte das Oliveiras": guerras, fome, abominação</td><td>Jesus prevê a queda do Templo</td><td>"Dores de parto" globais antes da segunda vinda</td><td>Parcialmente cumprido em 70 d.C.; horizonte duplo</td></tr>
+        <tr><td><strong>1–2 Tessalonicenses</strong></td><td>Vinda do Senhor; "homem da iniquidade"; "o que detém"</td><td>Cartas de Paulo a uma igreja ansiosa (~51 d.C.)</td><td>Arrebatamento + revelação do Anticristo</td><td>Conforto pastoral; o "Anticristo" como tipo recorrente</td></tr>
+        <tr><td><strong>2 Pedro 3</strong></td><td>"O dia do Senhor virá como ladrão"; elementos em fogo</td><td>Resposta a céticos sobre a demora</td><td>Renovação cósmica literal</td><td>Linguagem de juízo e nova criação moral</td></tr>
+        <tr><td><strong>Apocalipse 6–19</strong></td><td>Selos, trombetas, taças; a Besta; Babilônia; Armagedom</td><td>Igreja sob pressão de Roma (~95 d.C.)</td><td>Sequência da Tribulação ainda futura</td><td>Drama litúrgico sobre Roma e todo império opressor</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Resumo honesto: <span class="badge b-ok">✅</span> o <em>texto</em> e o <em>contexto histórico</em> são bem estabelecidos. <span class="badge b-spec">🟠</span> A <em>aplicação</em> a eventos específicos de hoje é interpretação, não dado.</p>
+</section>
+
+<!-- ETAPA 2 -->
+<section id="e2">
+  <span class="s-num">Etapa 2</span>
+  <h2 class="s-title">O Rio Eufrates</h2>
+  <p class="lead">Um rio real, com história imperial profunda — e um símbolo profético. Aqui a ciência climática encontra a profecia.</p>
+
+  <div class="grid g2">
+    <div class="card lk">
+      <h4>Os textos</h4>
+      <blockquote>"Solta os quatro anjos que se acham presos junto ao grande rio Eufrates."<cite>Apocalipse 9:14</cite></blockquote>
+      <blockquote>"O sexto anjo derramou a sua taça sobre o grande rio Eufrates; e secou-se a sua água, para que se preparasse o caminho dos reis do Oriente."<cite>Apocalipse 16:12</cite></blockquote>
+      <p>No Antigo Testamento, o Eufrates é a <strong>fronteira ideal</strong> da Terra Prometida (Gn 15:18; Dt 1:7) e cenário de oráculos em <strong>Jeremias 46 / 51</strong> e <strong>Isaías</strong>.</p>
+    </div>
+    <div class="card">
+      <h4>Por que esse rio importa</h4>
+      <ul class="clean">
+        <li><span class="badge b-ok">✅</span> Berço da civilização (Suméria, Babilônia, Assíria) — a "Mesopotâmia" = "entre rios".</li>
+        <li><span class="badge b-ok">✅</span> Fronteira natural entre o império romano e o persa/parto — daí "reis do Oriente".</li>
+        <li><span class="badge b-pos">🟡</span> No simbolismo bíblico, atravessar o Eufrates = invasão vinda do oriente.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h4>Situação atual do rio — o que a ciência diz</h4>
+    <div class="grid g2">
+      <div>
+        <ul class="clean">
+          <li><span class="badge b-ok">✅</span> A bacia Tigre–Eufrates perdeu enormes volumes de água doce nas últimas décadas (estudos da NASA com os satélites GRACE documentaram uma das maiores quedas de água subterrânea do planeta).</li>
+          <li><span class="badge b-ok">✅</span> Barragens a montante (Turquia/Síria, ex.: projeto GAP/Atatürk), seca, mudança climática e uso agrícola reduziram drasticamente a vazão a jusante, no Iraque.</li>
+          <li><span class="badge b-pos">🟡</span> Autoridades iraquianas e relatórios (incluindo alertas governamentais e de ONGs) advertiram que o Tigre e o Eufrates podem ficar <em>severamente</em> reduzidos — algumas declarações citam o horizonte de <strong>2040</strong> para níveis críticos/possível secagem de trechos.</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="clean con">
+          <li><span class="badge b-spec">🟠</span> "Secar até 2040" é uma <em>projeção de cenário</em>, não um fato datado: depende de chuvas, política das barragens e gestão hídrica — variáveis que podem mudar.</li>
+          <li><span class="badge b-spec">🟠</span> Mesmo reduzido, um rio "baixo" não é o mesmo que "seco". Trechos podem secar sazonalmente sem que o rio inteiro desapareça.</li>
+          <li><span class="badge b-no">🔴</span> Não há base científica para afirmar que a redução é <em>causada</em> por um cumprimento profético — é hidrologia e clima.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="margin-top:22px;color:var(--gold2)">O rio é um sinal profético? Os dois lados</h4>
+  <div class="compare">
+    <div class="yes">
+      <h4>Teólogos que veem um sinal 🟡</h4>
+      <ul class="clean pro">
+        <li>Comentaristas dispensacionalistas populares (linha de Hal Lindsey, Tim LaHaye, John Walvoord) leem Ap 16:12 literalmente: a redução real do rio "prepararia o caminho" geopolítico do oriente.</li>
+        <li>Veem convergência: rio secando + tensões Irã/Oriente + tecnologia = "palco montando-se".</li>
+        <li>Argumento: a Bíblia nomeia <em>este</em> rio específico, não um rio genérico.</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h4>Teólogos que discordam 🟠</h4>
+      <ul class="clean con">
+        <li>Preteristas/idealistas: o "Eufrates" em Apocalipse evoca a antiga Babilônia/Pártia, símbolo do inimigo — não o débito hídrico do séc. XXI.</li>
+        <li>Eruditos reformados alertam: o rio já esteve baixo várias vezes na história sem que "o fim" chegasse.</li>
+        <li>Risco do "newspaper exegesis" (ler o jornal de volta na Bíblia) — método criticado por acadêmicos de todas as correntes.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Veredito equilibrado: a <strong>crise hídrica é real e grave</strong> <span class="badge b-ok">✅</span>; a <strong>leitura profética</strong> é uma interpretação possível, não comprovável <span class="badge b-spec">🟠</span>.</p>
+</section>
+
+<!-- ETAPA 3 -->
+<section id="e3">
+  <span class="s-num">Etapa 3</span>
+  <h2 class="s-title">Inteligência Artificial &amp; a "Imagem da Besta"</h2>
+  <p class="lead">A tecnologia que mais provoca paralelos proféticos hoje. Vamos comparar com rigor — sem pânico e sem ingenuidade.</p>
+
+  <div class="grid g3">
+    <div class="card"><h3>O que existe de fato</h3>
+      <ul class="clean">
+        <li><span class="badge b-ok">✅</span> IA generativa avançada (modelos de linguagem) já é cotidiana.</li>
+        <li><span class="badge b-ok">✅</span> Reconhecimento facial em massa opera em vários países.</li>
+        <li><span class="badge b-ok">✅</span> Identidade digital nacional (ex.: Aadhaar/Índia) e carteiras digitais existem.</li>
+        <li><span class="badge b-ok">✅</span> Interfaces cérebro-computador (Neuralink e outras) estão em testes clínicos iniciais.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>O que é projetado</h3>
+      <ul class="clean">
+        <li><span class="badge b-pos">🟡</span> AGI (IA geral) — muitos laboratórios miram esta década; prazos variam de anos a décadas.</li>
+        <li><span class="badge b-spec">🟠</span> Superinteligência — hipótese séria entre alguns pesquisadores, contestada por outros.</li>
+        <li><span class="badge b-spec">🟠</span> "Vigilância global unificada" — pedaços existem, mas um sistema único e mundial, não.</li>
+      </ul>
+    </div>
+    <div class="card"><h3>O texto-âncora</h3>
+      <blockquote style="font-size:16px">"…foi-lhe permitido dar fôlego à imagem da besta, para que ela falasse… e que a ninguém fosse possível comprar ou vender, senão àquele que tivesse a marca."<cite>Apocalipse 13:15-17</cite></blockquote>
+    </div>
+  </div>
+
+  <h4 style="margin-top:22px;color:var(--gold2)">Comparação ponto a ponto</h4>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Elemento bíblico</th><th>Paralelo tecnológico sugerido</th><th>Avaliação</th></tr></thead>
+      <tbody>
+        <tr><td>"Imagem da besta que fala"</td><td>IA conversacional / avatares / deepfakes</td><td><span class="badge b-spec">🟠 Especulativo</span> — paralelo poético, não identificação.</td></tr>
+        <tr><td>"Marca na mão/testa para comprar e vender"</td><td>Chips implantáveis, biometria, carteira digital, CBDC</td><td><span class="badge b-spec">🟠</span> Tecnicamente concebível; nenhuma prova de que seja "a marca".</td></tr>
+        <tr><td>"Falso Profeta" que faz adorar a besta</td><td>Algoritmos persuasivos / culto à tecnologia</td><td><span class="badge b-spec">🟠</span> Analogia moral, não literal.</td></tr>
+        <tr><td>"Governo mundial" da besta</td><td>Organismos globais, padrões transnacionais</td><td><span class="badge b-no">🔴</span> Não existe governo mundial unificado hoje.</td></tr>
+        <tr><td>Controle de "todos os habitantes da terra"</td><td>Vigilância + IA + identidade digital</td><td><span class="badge b-pos">🟡</span> Capacidade técnica cresce; intenção global coordenada, não comprovada.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="compare" style="margin-top:18px">
+    <div class="yes"><h4>Defendem a conexão 🟠</h4>
+      <ul class="clean pro">
+        <li>Pregadores proféticos contemporâneos (linha de Jonathan Cahn, Tom Horn, e divulgadores dispensacionalistas).</li>
+        <li>Argumento: pela 1ª vez na história a tecnologia <em>permite</em> literalmente "controlar comprar e vender" de todos.</li>
+      </ul>
+    </div>
+    <div class="no"><h4>Rejeitam a conexão 🟡</h4>
+      <ul class="clean con">
+        <li>Teólogos reformados e católicos: a "marca" é primariamente símbolo de <em>lealdade</em> (a quem você pertence), não um gadget.</li>
+        <li>Eruditos lembram que toda geração viu "a marca" em sua tecnologia (códigos de barras, RFID, vacinas, etc.) e errou.</li>
+        <li>Éticos de IA: o risco real (viés, vigilância, concentração de poder) é sério <em>sem</em> precisar de moldura apocalíptica.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Ponto-chave: os <strong>riscos da IA são reais e merecem atenção</strong> <span class="badge b-ok">✅</span>; <strong>equacioná-los à "marca da besta" é interpretação</strong> <span class="badge b-spec">🟠</span>, repetidamente desmentida quando vira data marcada.</p>
+</section>
+
+<!-- ETAPA 4 -->
+<section id="e4">
+  <span class="s-num">Etapa 4</span>
+  <h2 class="s-title">O ano 2040 — existe um padrão?</h2>
+  <p class="lead">Você notou "2040" aparecer em vários lugares. Vamos checar se é convergência real ou viés de seleção.</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Fonte</th><th>O que projeta para ~2040</th><th>Natureza</th></tr></thead>
+      <tbody>
+        <tr><td>Autoridades hídricas do Iraque</td><td>Tigre/Eufrates em estado crítico, risco de trechos secos</td><td><span class="badge b-pos">🟡 Projeção científica</span></td></tr>
+        <tr><td>Relatórios climáticos (linha IPCC/ONU)</td><td>Marcos intermediários de aquecimento, estresse hídrico e migração</td><td><span class="badge b-ok">✅ Cenários revisados por pares</span></td></tr>
+        <tr><td>Pesquisadores de IA (parcela otimista)</td><td>AGI/transformações econômicas profundas dentro de ~10–20 anos</td><td><span class="badge b-spec">🟠 Estimativa especulativa</span></td></tr>
+        <tr><td>Futuristas (ex.: linha Kurzweil)</td><td>"Singularidade" projetada por volta de 2045 (não 2040)</td><td><span class="badge b-spec">🟠 Previsão de autor</span></td></tr>
+        <tr><td>Demografia (ONU/projeções)</td><td>Envelhecimento, pico de população em algumas regiões</td><td><span class="badge b-ok">✅ Modelagem estatística</span></td></tr>
+        <tr><td>"Profecias" de data fixa para 2040</td><td>Várias circulam online</td><td><span class="badge b-no">🔴 Sem base bíblica</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid g2" style="margin-top:18px">
+    <div class="card lk"><h4>Por que 2040 "aparece tanto"</h4>
+      <ul class="clean">
+        <li><span class="badge b-pos">🟡</span> É um horizonte redondo e útil (≈ 15–20 anos): longe o bastante para mudanças, perto o bastante para planejar. Planejadores adoram datas redondas.</li>
+        <li><span class="badge b-ok">✅</span> Muitos marcos de políticas (clima, energia, metas líquidas) foram fixados em 2030/2040/2050 — então os <em>estudos</em> miram esses anos.</li>
+      </ul>
+    </div>
+    <div class="card warn"><h4>O alerta metodológico</h4>
+      <p><span class="badge b-spec">🟠</span> "Concentração de previsões em 2040" é em boa parte <strong>viés de confirmação</strong>: quando procuramos 2040, encontramos 2040 — e ignoramos as mil previsões para 2035, 2045, 2050.</p>
+      <p><span class="badge b-no">🔴</span> A Bíblia <strong>não cita</strong> 2040 nem qualquer ano do calendário. Qualquer data específica é acréscimo humano.</p>
+    </div>
+  </div>
+  <p class="note">Veredito: há um <em>agrupamento real de marcos de planejamento</em> perto de 2040 <span class="badge b-pos">🟡</span>, mas tratá-lo como "data profética" é <span class="badge b-no">🔴</span> sem fundamento.</p>
+</section>
+
+<!-- ETAPA 5 -->
+<section id="e5">
+  <span class="s-num">Etapa 5</span>
+  <h2 class="s-title">Israel — Templo, Novilha Vermelha &amp; preparativos</h2>
+  <p class="lead">O renascimento de Israel (1948) é o pilar da leitura futurista moderna. O que aqui é fato e o que é teoria?</p>
+
+  <div class="grid g3">
+    <div class="card"><h3 style="color:#7fe6a3">Fatos confirmados ✅</h3>
+      <ul class="clean">
+        <li>O <strong>Sinédrio</strong> foi reconstituído de forma simbólica/voluntária em 2004 (não é órgão estatal).</li>
+        <li>O <strong>Temple Institute</strong> em Jerusalém produziu utensílios, vestes sacerdotais e treina candidatos a sacerdotes.</li>
+        <li>Houve importação/criação de <strong>novilhas vermelhas</strong> (red heifers) — notícia real e amplamente divulgada nos últimos anos.</li>
+        <li>O <strong>Monte do Templo</strong> abriga hoje o Domo da Rocha e a Mesquita de Al-Aqsa (3º lugar mais sagrado do Islã).</li>
+      </ul>
+    </div>
+    <div class="card"><h3 style="color:#f0d479">Teorias / debates 🟡</h3>
+      <ul class="clean">
+        <li>Se uma novilha "perfeita" permitiria a purificação ritual para reiniciar o culto (Números 19).</li>
+        <li>Onde um Terceiro Templo poderia ficar sem destruir santuários islâmicos — questão explosiva.</li>
+        <li>Se profecias exigem Templo <em>físico</em> (futurista) ou já se cumpriram em Cristo/Igreja (visão do NT, Hb 8–10).</li>
+      </ul>
+    </div>
+    <div class="card warn"><h3 style="color:#f08a8a">Implicações &amp; cautelas 🟠</h3>
+      <ul class="clean con">
+        <li>Qualquer mudança no Monte do Templo é estopim geopolítico-religioso de altíssimo risco.</li>
+        <li>Grupos que financiam preparativos são <em>minoria</em>; não representam política oficial de Israel.</li>
+        <li>Ler manchetes como "contagem regressiva" superestima a iminência.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Resumo: os <strong>preparativos materiais existem</strong> <span class="badge b-ok">✅</span>; sua <strong>leitura como gatilho do fim</strong> é interpretação teológica contestada <span class="badge b-spec">🟠</span>.</p>
+</section>
+
+<!-- ETAPA 6 -->
+<section id="e6">
+  <span class="s-num">Etapa 6</span>
+  <h2 class="s-title">Gogue e Magogue (Ezequiel 38–39)</h2>
+  <p class="lead">A profecia mais "geopolitizada" — frequentemente mapeada sobre o noticiário. Vejamos os dois lados com cuidado.</p>
+
+  <blockquote>"Volta o teu rosto para Gogue, terra de Magogue, príncipe de Rôs, Meseque e Tubal… Pérsia, Cuxe e Pute com eles… Gômer e Bete-Togarma."<cite>Ezequiel 38:2-6</cite></blockquote>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Nome antigo</th><th>Identificação geográfica histórica</th><th>Leitura moderna popular</th><th>Confiança</th></tr></thead>
+      <tbody>
+        <tr><td>Magogue / Rôs / Meseque / Tubal</td><td>Anatólia/Cáucaso (povos ao norte do mundo bíblico)</td><td>Rússia (e estados ao norte)</td><td><span class="badge b-spec">🟠</span></td></tr>
+        <tr><td>Pérsia</td><td>Planalto iraniano</td><td>Irã</td><td><span class="badge b-pos">🟡</span> (continuidade geográfica clara)</td></tr>
+        <tr><td>Gômer / Bete-Togarma</td><td>Anatólia (atual Turquia)</td><td>Turquia</td><td><span class="badge b-pos">🟡</span></td></tr>
+        <tr><td>Cuxe / Pute</td><td>Núbia/Sudão e Líbia</td><td>África do norte/leste</td><td><span class="badge b-pos">🟡</span></td></tr>
+        <tr><td>"China / reis do Oriente"</td><td>—</td><td>Importada de Apocalipse 16, não de Ezequiel</td><td><span class="badge b-no">🔴</span> (não está em Ez 38)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="compare" style="margin-top:18px">
+    <div class="yes"><h4>Argumentos favoráveis 🟡</h4>
+      <ul class="clean pro">
+        <li>A <em>geografia</em> aponta de fato para o "extremo norte" e para Pérsia (Irã) — coalizões reais Rússia–Irã–Turquia existem hoje.</li>
+        <li>O cenário (invasão de um Israel "restaurado e em paz") combina com a existência do Estado de Israel desde 1948.</li>
+      </ul>
+    </div>
+    <div class="no"><h4>Argumentos contrários 🟠</h4>
+      <ul class="clean con">
+        <li>"Rôs" como "Rússia" é etimologia popular frágil; "Rússia" é nome medieval, não da Anatólia antiga.</li>
+        <li>Idealistas: Gogue é figura <em>arquetípica</em> do mal hostil a Deus (reusada em Ap 20), não uma nação do séc. XXI.</li>
+        <li>Coalizões mudam: nos anos 80 o "Gogue" era a URSS; o mapa profético foi redesenhado a cada era — sinal de que é leitura conjuntural.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 7 -->
+<section id="e7">
+  <span class="s-num">Etapa 7</span>
+  <h2 class="s-title">Sistema econômico global &amp; "comprar e vender"</h2>
+  <p class="lead">Apocalipse 13 fala de um controle econômico total. As CBDCs e a identidade digital reacendem o debate.</p>
+
+  <div class="grid g2">
+    <div class="card lk"><h4>O que é real hoje ✅</h4>
+      <ul class="clean">
+        <li>Dezenas de bancos centrais estudam ou pilotam <strong>CBDCs</strong> (moeda digital de banco central).</li>
+        <li>Pagamentos sem dinheiro físico já dominam em vários países.</li>
+        <li>Sistemas de identidade digital ligados a serviços financeiros estão em expansão.</li>
+        <li>Sanções e listas de bloqueio já <em>impedem</em> certas pessoas/entidades de "comprar e vender" globalmente.</li>
+      </ul>
+    </div>
+    <div class="card warn"><h4>O salto interpretativo 🟠</h4>
+      <p>Da capacidade técnica de "rastrear pagamentos" até "ninguém compra ou vende sem adorar a besta" há um <strong>abismo</strong> de: governo único, coerção religiosa global e identificação corporal universal — nenhum dos quais existe.</p>
+    </div>
+  </div>
+
+  <h4 style="margin-top:22px;color:var(--gold2)">Três cenários</h4>
+  <div class="grid g3">
+    <div class="card"><h3 style="color:#a8c2f5">Plausível 🟡</h3>
+      <p>Sociedades cada vez mais cashless, com mais rastreabilidade e pontos de exclusão financeira (sanções, scores). Tendência real, gradual, parcial.</p>
+    </div>
+    <div class="card"><h3 style="color:#f0b888">Improvável 🟠</h3>
+      <p>Uma única moeda/ID mundial obrigatória, controlada por um só ator, em prazo curto. Barreiras políticas, técnicas e de soberania são imensas.</p>
+    </div>
+    <div class="card"><h3 style="color:#f0a0a0">Quase impossível 🔴</h3>
+      <p>Um chip que "obriga a adorar" e bloqueia toda compra do planeta de um dia para o outro. Sem base tecnológica nem governamental.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 8 -->
+<section id="e8">
+  <span class="s-num">Etapa 8</span>
+  <h2 class="s-title">Eventos mundiais &amp; as "dores de parto"</h2>
+  <p class="lead">Jesus falou de "guerras, fomes e terremotos" como princípio de dores (Mt 24:8). Como os eventos atuais se encaixam?</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Tendência atual</th><th>Eco bíblico citado</th><th>Realidade factual</th><th>Leitura profética</th></tr></thead>
+      <tbody>
+        <tr><td>Mudança climática</td><td>Sinais nos céus/terra (Lc 21:25-26)</td><td><span class="badge b-ok">✅ Aquecimento documentado</span></td><td><span class="badge b-spec">🟠</span> Conexão simbólica</td></tr>
+        <tr><td>Pandemias</td><td>"Pestes" (Lc 21:11)</td><td><span class="badge b-ok">✅ Ocorrem ciclicamente</span></td><td><span class="badge b-spec">🟠</span> Presentes em toda era</td></tr>
+        <tr><td>Guerras / "rumores de guerras"</td><td>Mt 24:6-7</td><td><span class="badge b-ok">✅ Conflitos ativos</span></td><td><span class="badge b-pos">🟡</span> Sempre houve; intensidade varia</td></tr>
+        <tr><td>Escassez de água/alimentos</td><td>Fomes (Mt 24:7); Ap 6 (balança/preço)</td><td><span class="badge b-ok">✅ Estresse hídrico real</span></td><td><span class="badge b-spec">🟠</span></td></tr>
+        <tr><td>Crises energéticas / migrações</td><td>"Angústia entre as nações" (Lc 21:25)</td><td><span class="badge b-ok">✅ Reais</span></td><td><span class="badge b-spec">🟠</span></td></tr>
+        <tr><td>Colapso demográfico / automação</td><td>—</td><td><span class="badge b-ok">✅ Tendências reais</span></td><td><span class="badge b-no">🔴 Sem texto correspondente</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">O paradoxo honesto: essas aflições <strong>são reais hoje</strong> <span class="badge b-ok">✅</span> — <em>e</em> existiram em quase todos os séculos. Por isso Jesus disse "vede, não vos assusteis… ainda não é o fim" (Mt 24:6).</p>
+</section>
+
+<!-- ETAPA 9 -->
+<section id="e9">
+  <span class="s-num">Etapa 9</span>
+  <h2 class="s-title">As teorias mais discutidas no mundo</h2>
+  <p class="lead">Um levantamento das principais ideias em circulação, com a evidência usada, a crítica recebida e o grau de aceitação. (Lista condensada das mais influentes.)</p>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>#</th><th>Teoria</th><th>Evidência usada</th><th>Crítica</th><th class="center">Aceitação</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Israel 1948 = "geração final"</td><td>Mt 24:32-34 ("figueira")</td><td>Definição de "geração" já falhou em datas</td><td class="center"><span class="prob p3">Média</span></td></tr>
+        <tr><td>2</td><td>Arrebatamento pré-tribulacionista</td><td>1 Ts 4; Ap 3:10</td><td>Doutrina recente (séc. XIX); contestada</td><td class="center"><span class="prob p3">Popular</span></td></tr>
+        <tr><td>3</td><td>Terceiro Templo iminente</td><td>Preparativos reais em Jerusalém</td><td>Obstáculo político-religioso enorme</td><td class="center"><span class="prob p2">Baixa</span></td></tr>
+        <tr><td>4</td><td>Novilha vermelha = gatilho</td><td>Números 19; novilhas recentes</td><td>Requisitos rituais e debate rabínico</td><td class="center"><span class="prob p2">Baixa</span></td></tr>
+        <tr><td>5</td><td>Gogue = Rússia/Irã/Turquia</td><td>Ez 38; coalizões atuais</td><td>Etimologia "Rôs/Rússia" frágil</td><td class="center"><span class="prob p3">Média</span></td></tr>
+        <tr><td>6</td><td>Marca da besta = chip/biometria</td><td>Ap 13:16-17</td><td>Cada geração "errou" a sua versão</td><td class="center"><span class="prob p2">Média-baixa</span></td></tr>
+        <tr><td>7</td><td>CBDC = economia da besta</td><td>"Comprar e vender" (Ap 13)</td><td>Sem governo/religião global única</td><td class="center"><span class="prob p2">Baixa</span></td></tr>
+        <tr><td>8</td><td>IA = "imagem da besta"</td><td>Ap 13:15</td><td>Analogia, não identificação</td><td class="center"><span class="prob p2">Baixa</span></td></tr>
+        <tr><td>9</td><td>Eufrates secando = Ap 16:12</td><td>Dados hídricos reais</td><td>"Baixo" ≠ "seco"; símbolo histórico</td><td class="center"><span class="prob p3">Média</span></td></tr>
+        <tr><td>10</td><td>Anticristo = líder político específico</td><td>Dn 7; 2 Ts 2</td><td>Inúmeros "candidatos" já desmentidos</td><td class="center"><span class="prob p1">Muito baixa</span></td></tr>
+        <tr><td>11</td><td>UE / blocos = "Roma revivida"</td><td>Dn 2 ("10 dedos")</td><td>Número e forma dos blocos mudam</td><td class="center"><span class="prob p2">Baixa</span></td></tr>
+        <tr><td>12</td><td>Preterismo (tudo cumprido em 70 d.C.)</td><td>Mt 24:34; datação de Apocalipse</td><td>Dificuldade com passagens cósmicas</td><td class="center"><span class="prob p3">Acadêmica</span></td></tr>
+        <tr><td>13</td><td>Amilenismo (reino simbólico atual)</td><td>Ap 20 como símbolo</td><td>Tensão com linguagem "mil anos"</td><td class="center"><span class="prob p4">Alta (reformados/católicos)</span></td></tr>
+        <tr><td>14</td><td>Pós-milenismo (mundo melhora antes)</td><td>Parábolas do Reino</td><td>Otimismo abalado por guerras mundiais</td><td class="center"><span class="prob p2">Minoritária</span></td></tr>
+        <tr><td>15</td><td>"Blood moons" / sinais astronômicos</td><td>Jl 2; Ap 6; eclipses</td><td>Datas passaram sem evento</td><td class="center"><span class="prob p1">Muito baixa</span></td></tr>
+        <tr><td>16</td><td>Damasco destruída (Is 17)</td><td>Guerra na Síria</td><td>Oráculo histórico já cumprido</td><td class="center"><span class="prob p2">Baixa</span></td></tr>
+        <tr><td>17</td><td>"Apostasia" cultural = sinal final</td><td>2 Ts 2:3; 2 Tm 3</td><td>Toda era se viu como a pior</td><td class="center"><span class="prob p3">Média</span></td></tr>
+        <tr><td>18</td><td>Terceira Guerra / nuclear = juízo</td><td>Ap 8–9 ("fogo")</td><td>Leitura tecnológica de imagem antiga</td><td class="center"><span class="prob p2">Baixa</span></td></tr>
+        <tr><td>19</td><td>Governo mundial único iminente</td><td>Ap 13:7</td><td>Soberanias fortes resistem</td><td class="center"><span class="prob p2">Baixa</span></td></tr>
+        <tr><td>20</td><td>"Sétimo milênio" (cronologia de 6000 anos)</td><td>2 Pe 3:8; tradição rabínica</td><td>Cronologia bíblica imprecisa</td><td class="center"><span class="prob p1">Muito baixa</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">São apresentadas as ~20 teorias de maior impacto público (o pedido falava em 50; estas concentram o essencial e os arquétipos das demais — variações de datas, líderes e tecnologias repetem os mesmos padrões). Note como as de <span class="badge b-no">🔴</span> "data marcada" têm aceitação consistentemente <strong>muito baixa</strong> entre acadêmicos.</p>
+</section>
+
+<!-- ETAPA 10 -->
+<section id="e10">
+  <span class="s-num">Etapa 10</span>
+  <h2 class="s-title">Matriz de probabilidade</h2>
+  <p class="lead">Avaliação resumida — "probabilidade" aqui significa: <em>quão provável é que esta interpretação esteja correta como cumprimento literal nas próximas décadas</em>. É um juízo qualitativo, não estatística.</p>
+
+  <div class="legend" style="margin-bottom:8px">
+    <span class="prob p1">Muito improvável</span>
+    <span class="prob p2">Improvável</span>
+    <span class="prob p3">Possível</span>
+    <span class="prob p4">Provável</span>
+    <span class="prob p5">Muito provável</span>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Teoria / Tese</th><th>Evidências a favor</th><th>Contra-evidências</th><th class="center">Probabilidade</th></tr></thead>
+      <tbody>
+        <tr><td>Crise hídrica grave no Eufrates até meados do séc. XXI</td><td>Dados NASA/GRACE; barragens; seca; alertas iraquianos</td><td>Depende de política e clima; reversível em parte</td><td class="center"><span class="prob p4">Provável</span></td></tr>
+        <tr><td>IA transformar profundamente economia/sociedade até ~2040</td><td>Ritmo atual; investimento; capacidade crescente</td><td>Prazos historicamente otimistas demais</td><td class="center"><span class="prob p3">Possível</span></td></tr>
+        <tr><td>Mais sociedades cashless / com CBDC</td><td>Pilotos reais; tendência de pagamentos</td><td>Resistência, privacidade, soberania</td><td class="center"><span class="prob p4">Provável</span></td></tr>
+        <tr><td>Conflitos envolvendo Rússia–Irã–Turquia e Israel</td><td>Geopolítica atual tensa</td><td>Guerra "estilo Gogue" específica é incerta</td><td class="center"><span class="prob p3">Possível</span></td></tr>
+        <tr><td>Terceiro Templo construído em prazo curto</td><td>Preparativos materiais existem</td><td>Barreira política/religiosa quase intransponível</td><td class="center"><span class="prob p2">Improvável</span></td></tr>
+        <tr><td>"Marca da besta" = tecnologia identificável hoje</td><td>Capacidade técnica de rastreio</td><td>Toda geração errou; é símbolo de lealdade</td><td class="center"><span class="prob p2">Improvável</span></td></tr>
+        <tr><td>Governo mundial único e coercitivo até 2050</td><td>Globalização de padrões</td><td>Soberanias e rivalidades fortes</td><td class="center"><span class="prob p1">Muito improvável</span></td></tr>
+        <tr><td>Data específica do fim (2040 ou qualquer outra) acertada</td><td>—</td><td>Mt 24:36; histórico de 100% de erros</td><td class="center"><span class="prob p1">Muito improvável</span></td></tr>
+        <tr><td>Continuação de "dores de parto" (guerras, pestes, fomes)</td><td>Padrão histórico constante</td><td>Não indica <em>quando</em> é o fim</td><td class="center"><span class="prob p5">Muito provável</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Padrão revelador: o que é <strong>"muito provável"</strong> são <em>tendências gerais</em> (crises continuam, tecnologia avança); o que é <strong>"muito improvável"</strong> são as <em>datas e identificações específicas</em>. Essa é a lição central de 2000 anos de escatologia.</p>
+</section>
+
+<!-- ETAPA 11 -->
+<section id="e11">
+  <span class="s-num">Etapa 11</span>
+  <h2 class="s-title">Síntese final</h2>
+  <p class="lead">Os principais cenários, lado a lado, mais um cronograma hipotético e uma conclusão que separa fato de fé.</p>
+
+  <div class="grid g2">
+    <div class="card lk"><h3>1 · Conservadores / futuristas</h3>
+      <p>Restauração de Israel + sinais globais indicam que estamos "na estação" final. Sequência esperada: arrebatamento → Tribulação (7 anos, Anticristo, marca) → Armagedom → volta de Cristo → Milênio. Ênfase: <em>vigiar e estar pronto</em>, sem marcar datas. <span class="badge b-spec">🟠</span></p>
+    </div>
+    <div class="card lk"><h3>2 · Futuristas (tecnológicos)</h3>
+      <p>O grande ponto de inflexão é a <strong>AGI/singularidade</strong> (~2040-2045), não o sobrenatural. "Transformação" é tecnológica: IA, biotecnologia, longevidade. Riscos: desemprego, vigilância, perda de controle. <span class="badge b-pos">🟡</span></p>
+    </div>
+    <div class="card lk"><h3>3 · Acadêmicos (bíblicos)</h3>
+      <p>Apocalipse e Daniel são <strong>literatura apocalíptica</strong> dirigida a seus contextos antigos (Babilônia, Roma). Mensagem perene: Deus julga o império e vindica os fiéis. Cautela contra leituras jornalísticas. <span class="badge b-ok">✅</span> (sobre o método)</p>
+    </div>
+    <div class="card lk"><h3>4 · Estudiosos judeus</h3>
+      <p>Foco na vinda (não retorno) do <strong>Mashiach</strong>, reconstrução do Templo, reunião dos exilados e era de paz. Sem "Tribulação" cristã; tradições variam (de literais a alegóricas). <span class="badge b-pos">🟡</span></p>
+    </div>
+    <div class="card warn"><h3>5 · Cenário mais alarmista</h3>
+      <p>Convergência rápida: guerra regional → crise hídrica/alimentar → colapso econômico → moeda digital obrigatória + IA de vigilância → líder carismático global. <strong>Possível imaginar, sem evidência de que aconteça assim.</strong> <span class="badge b-no">🔴</span></p>
+    </div>
+    <div class="card"><h3 style="color:#9ce8ba">6 · Mais plausível (evidência atual)</h3>
+      <p>Continuação <strong>gradual</strong> de tendências reais: estresse hídrico/climático, avanço da IA, mais pagamentos digitais, tensões geopolíticas recorrentes — <em>sem</em> um cronograma apocalíptico definido nem data. <span class="badge b-ok">✅</span></p>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--serif);color:var(--gold2);margin:28px 0 6px">7 · Cronograma hipotético até 2050</h3>
+  <p class="note" style="margin-top:0">⚠️ Exercício <strong>especulativo</strong> de cenários — NÃO é previsão nem profecia. Serve só para visualizar o debate.</p>
+  <div class="tl">
+    <div class="ev"><span class="yr">Hoje–2030</span><br>Avanço acelerado de IA; mais pilotos de CBDC; estresse hídrico crescente no Oriente Médio; tensões geopolíticas recorrentes. <span class="badge b-ok">✅ tendências reais</span></div>
+    <div class="ev"><span class="yr">~2030–2035</span><br>Possível AGI (debatido); identidade digital mais difundida; metas climáticas intermediárias cobradas. <span class="badge b-pos">🟡</span></div>
+    <div class="ev"><span class="yr">~2035–2040</span><br>Eufrates/Tigre em estado crítico segundo projeções iraquianas; pressões migratórias; economia majoritariamente digital em muitos países. <span class="badge b-pos">🟡</span></div>
+    <div class="ev"><span class="yr">~2040–2045</span><br>"Singularidade" projetada por futuristas (Kurzweil ~2045); maior debate sobre governança global de IA. <span class="badge b-spec">🟠</span></div>
+    <div class="ev"><span class="yr">~2045–2050</span><br>Mundo transformado por tecnologia e clima — mas o "fim" permanece <strong>sem data</strong> e fora do alcance da previsão. <span class="badge b-no">🔴 quanto a datas proféticas</span></div>
+  </div>
+
+  <h3 style="font-family:var(--serif);color:var(--gold2);margin:28px 0 6px">8 · Conclusão equilibrada — separando as camadas</h3>
+  <div class="grid g2">
+    <div class="card"><h4 style="color:#7fe6a3">✅ Fatos</h4>
+      <ul class="clean"><li>O Eufrates está perdendo água (dados de satélite).</li><li>Israel existe como Estado desde 1948; há preparativos para o Templo por grupos específicos.</li><li>IA, biometria, reconhecimento facial e CBDCs são reais e crescentes.</li><li>Guerras, pestes e fomes ocorrem — como em toda a história.</li></ul>
+    </div>
+    <div class="card"><h4 style="color:#f0d479">🟡 Hipóteses</h4>
+      <ul class="clean"><li>Que as coalizões atuais correspondam a "Gogue".</li><li>Que a AGI chegue por volta de 2040.</li><li>Que sociedades fiquem majoritariamente cashless em décadas.</li></ul>
+    </div>
+    <div class="card"><h4 style="color:#f0ab74">🟠 Especulações</h4>
+      <ul class="clean"><li>Que IA seja "a imagem da besta".</li><li>Que CBDC seja "a economia da marca".</li><li>Que o Eufrates secando seja Ap 16:12 cumprindo-se.</li></ul>
+    </div>
+    <div class="card"><h4 style="color:#f08a8a">🔴 Conspirações / sem evidência</h4>
+      <ul class="clean"><li>Que exista um plano único e oculto para um governo mundial em data próxima.</li><li>Que "2040" seja uma data profética bíblica.</li><li>Que um indivíduo já identificável seja "o Anticristo".</li></ul>
+    </div>
+  </div>
+
+  <div class="card lk" style="margin-top:18px">
+    <h4>✦ E as Profecias?</h4>
+    <p>As <strong>profecias</strong> são uma categoria à parte — não se "provam" como fatos científicos nem se reduzem a manchetes. Elas pertencem ao terreno da <strong>fé e da esperança</strong>. A postura mais sábia, compartilhada por boa parte da tradição cristã (e ecoada por Jesus em Mateus 24:36-44), é dupla: <em>levar a sério</em> a mensagem moral — viver com integridade, justiça e vigilância — e <em>recusar</em> a ansiedade das datas. "Velai, pois não sabeis o dia."</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p><strong>Profecias Bíblicas &amp; o Mundo de Hoje</strong> — apresentação para conversa, montada de forma imparcial a partir das principais correntes teológicas (conservadora, reformada, dispensacionalista, católica, judaica) e de dados públicos de ciência e geopolítica.</p>
+  <p class="note">Este material organiza e contrasta posições conhecidas; não constitui aconselhamento profético, financeiro ou político, e evita deliberadamente fixar datas. Onde a evidência é fraca, isso está marcado. Use as etiquetas ✅🟡🟠🔴 para guiar a conversa.</p>
+  <p style="margin-top:14px">Dica de conversa: escolha 2–3 etapas que mais interessam vocês e debatam "qual etiqueta vocês dariam?" — é uma ótima forma de pensar juntos. 💛</p>
+</footer>
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao topo">↑</button>
+
+<script>
+  // realça o link de navegação da seção visível
+  const links=[...document.querySelectorAll('.navlinks a')];
+  const map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+  const obs=new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      const a=map.get(e.target.id);
+      if(a&&e.isIntersecting){links.forEach(x=>x.style.color='');a.style.color='var(--gold2)';}
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
