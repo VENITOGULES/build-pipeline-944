@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard de Exames — Camila Thaiani da Silva Gules de Lima</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --panel2:#273449; --line:#334155;
+    --txt:#e2e8f0; --muted:#94a3b8; --accent:#38bdf8; --accent2:#818cf8;
+    --ok:#22c55e; --okbg:rgba(34,197,94,.14);
+    --low:#3b82f6; --lowbg:rgba(59,130,246,.16);
+    --high:#ef4444; --highbg:rgba(239,68,68,.16);
+    --warn:#f59e0b; --warnbg:rgba(245,158,11,.16);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--txt);font-size:14px}
+  header{padding:22px 26px;background:linear-gradient(120deg,#1e293b,#0f172a);border-bottom:1px solid var(--line)}
+  header h1{margin:0 0 4px;font-size:21px}
+  header .sub{color:var(--muted);font-size:13px}
+  .wrap{padding:18px 26px;max-width:1500px;margin:0 auto}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:20px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kpi .v{font-size:26px;font-weight:700;color:var(--accent)}
+  .kpi .l{color:var(--muted);font-size:12px;margin-top:2px}
+  h2{font-size:16px;margin:26px 0 12px;border-left:3px solid var(--accent);padding-left:10px}
+  .insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+  .ins{background:var(--panel);border:1px solid var(--line);border-left-width:4px;border-radius:10px;padding:14px 16px}
+  .ins.high{border-left-color:var(--high)} .ins.warn{border-left-color:var(--warn)}
+  .ins.ok{border-left-color:var(--ok)} .ins.info{border-left-color:var(--accent)}
+  .ins h3{margin:0 0 6px;font-size:14px}
+  .ins p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+  .cats{display:flex;flex-wrap:wrap;gap:6px}
+  .cat{background:var(--panel);border:1px solid var(--line);color:var(--txt);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:12.5px}
+  .cat.active{background:var(--accent);color:#062536;border-color:var(--accent);font-weight:600}
+  input[type=search]{background:var(--panel);border:1px solid var(--line);color:var(--txt);padding:7px 12px;border-radius:8px;min-width:200px}
+  label.chk{display:flex;align-items:center;gap:6px;color:var(--muted);cursor:pointer;user-select:none}
+  .chartbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:18px}
+  .chartbox h3{margin:0 0 2px;font-size:15px}
+  .chartbox .csub{color:var(--muted);font-size:12px;margin-bottom:6px}
+  .tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px;max-height:78vh}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;white-space:nowrap}
+  th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:center}
+  thead th{position:sticky;top:0;background:var(--panel2);z-index:3;font-size:12px}
+  tbody th{position:sticky;left:0;background:var(--panel);text-align:left;z-index:2;font-weight:500;min-width:215px}
+  .catrow td{position:sticky;left:0;background:var(--panel2);text-align:left;font-weight:700;color:var(--accent);letter-spacing:.3px;text-transform:uppercase;font-size:11px}
+  td.ref{color:var(--muted);font-size:11px;text-align:left;background:var(--panel)}
+  .cell{cursor:default}
+  .cell.low{background:var(--lowbg);color:#bfdbfe;font-weight:600}
+  .cell.high{background:var(--highbg);color:#fecaca;font-weight:600}
+  .cell.ok{color:var(--txt)}
+  .cell.na{color:#475569}
+  .cell.clk{cursor:pointer}
+  tbody th.clk{cursor:pointer}
+  tbody th.clk:hover,.cell.clk:hover{outline:1px solid var(--accent);outline-offset:-1px}
+  .arrow{font-size:10px;margin-left:3px}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px;margin:10px 0}
+  .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:4px}
+  .disc{margin-top:24px;padding:14px 16px;background:var(--warnbg);border:1px solid var(--warn);border-radius:10px;color:#fde68a;font-size:12.5px;line-height:1.5}
+  .foot{color:var(--muted);font-size:11.5px;margin:18px 0 40px;text-align:center}
+  svg text{fill:var(--muted);font-size:11px}
+  .tt{font-size:11px}
+  a.tab{color:var(--accent)}
+</style>
+</head>
+<body>
+<header>
+  <h1>🩺 Dashboard de Exames Laboratoriais</h1>
+  <div class="sub"><b>Paciente:</b> Camila Thaiani da Silva Gules de Lima &nbsp;·&nbsp; <b>Nasc.:</b> 18/10/1995 &nbsp;·&nbsp; <b>Médico:</b> Dr. Renato Slomka &nbsp;·&nbsp; <b>Período:</b> fev/2022 → jun/2026 (8 coletas)</div>
+</header>
+
+<div class="wrap">
+  <div class="kpis" id="kpis"></div>
+
+  <h2>🔎 Leitura clínica dos padrões</h2>
+  <div class="insights">
+    <div class="ins warn"><h3>💧 Hipercalciúria recorrente</h3><p>Cálcio na urina de 24h repetidamente no limite ou elevado (pico de <b>445 mg/24h</b> em jan/2025; 341,6 em ago/2022; ref. 100–300). É o principal fio condutor do acompanhamento.</p></div>
+    <div class="ins high"><h3>☀️ Vitamina D muito alta + PTH baixo</h3><p>Vitamina D persistentemente <b>200–304 ng/mL</b> (zona de toxicidade &gt;100) com PTH suprimido (11–26). Padrão típico de suplementação em dose alta — possível relação com a calciúria. Vale rever com o médico.</p></div>
+    <div class="ins warn"><h3>🩸 Deficiência de ferro intermitente</h3><p>Ferritina baixa em ago/2022 (<b>9,8</b>) e 2023 (11,5), acompanhada de anemia leve (Hb 10,8 em ago/2022 e 11,0 em nov/2025). Melhora parcial nos anos seguintes.</p></div>
+    <div class="ins info"><h3>🔥 Evento inflamatório em ago/2022</h3><p>Pico isolado: leucócitos <b>11.600</b>, PCR 14,1 mg/L, VHS 22 e cortisol 27,4 — sugere um evento agudo pontual (infecção/estresse), normalizado nos exames seguintes.</p></div>
+    <div class="ins warn"><h3>🫀 Enzimas hepáticas em jun/2026</h3><p>Primeira elevação de <b>TGO 48</b> (ref &lt;32) e TGP 34 (no limite). Não havia ocorrido antes — vale reavaliar.</p></div>
+    <div class="ins ok"><h3>✅ Pontos consistentemente bons</h3><p>Glicemia, HbA1c e insulina sempre ótimas (sem resistência insulínica). Perfil lipídico sempre favorável, com HDL alto (70–98).</p></div>
+  </div>
+
+  <h2>📈 Evolução de cada indicador</h2>
+  <div class="controls">
+    <div class="cats" id="cats"></div>
+  </div>
+  <div class="controls">
+    <input type="search" id="search" placeholder="🔍 buscar indicador...">
+    <label class="chk"><input type="checkbox" id="onlyAlt"> mostrar só com valores alterados</label>
+  </div>
+
+  <div class="chartbox">
+    <h3 id="chTitle">Selecione um indicador na tabela</h3>
+    <div class="csub" id="chSub">Clique em qualquer linha da tabela abaixo para ver o gráfico de evolução. A faixa verde é o intervalo de referência.</div>
+    <div id="chart"></div>
+  </div>
+
+  <div class="legend">
+    <span><span class="sw" style="background:var(--okbg);border:1px solid var(--ok)"></span>Dentro da referência</span>
+    <span><span class="sw" style="background:var(--lowbg);border:1px solid var(--low)"></span>Abaixo da referência</span>
+    <span><span class="sw" style="background:var(--highbg);border:1px solid var(--high)"></span>Acima da referência</span>
+    <span><span class="sw" style="background:var(--panel2)"></span>Não medido</span>
+  </div>
+
+  <div class="tablewrap">
+    <table id="tbl"><thead></thead><tbody></tbody></table>
+  </div>
+
+  <h2>🧪 Outros exames pontuais</h2>
+  <div class="ins info" style="border-left-color:var(--accent2)">
+    <p style="color:var(--txt)">
+    <b>HOMA-IR</b> 1,4 (fev/2022) — sem resistência insulínica · &nbsp;
+    <b>Serotonina</b> 207,2 ng/mL (mai/2023; ref 50–200) — discretamente alta · &nbsp;
+    <b>Alumínio</b> 6,2 µg/L (jan/2025; ref &lt;15) — normal · &nbsp;
+    <b>Beta-HCG</b> &lt;5 (jan/2025) — não gestante · &nbsp;
+    <b>FAN</b> negativo/não reagente (ago/2022 e mai/2023) · &nbsp;
+    <b>T3 reverso</b> 0,25–0,29 ng/mL (2022–2024) · &nbsp;
+    <b>Urina tipo I</b> (nov/2025 e jun/2026): sem alterações relevantes (densidade, pH, sedimento normais).
+    </p>
+  </div>
+
+  <div class="disc">
+    ⚠️ <b>Aviso:</b> este painel é uma organização dos resultados informados nos laudos, para facilitar a visualização. <b>Não é um diagnóstico nem substitui avaliação médica.</b> As faixas de referência podem variar entre laboratórios (os exames vieram de Weinmann, Unimed e outros); pequenas diferenças de unidade/método foram padronizadas para permitir comparação. Sempre interprete com o médico responsável.
+  </div>
+  <div class="foot">Gerado automaticamente · 8 coletas · paciente Camila T. S. G. de Lima · uso pessoal</div>
+</div>
+
+<script>
+// ---------- Datas (ordem cronológica) ----------
+const DATES = [
+  {label:'14/02/2022', short:"Fev'22"},
+  {label:'01/08/2022', short:"Ago'22"},
+  {label:'31/05/2023', short:"Mai'23"},
+  {label:'22/03/2024', short:"Mar'24"},
+  {label:'28/03/2024', short:"Mar'24*"},
+  {label:'14/01/2025', short:"Jan'25"},
+  {label:'06/11/2025', short:"Nov'25"},
+  {label:'18/06/2026', short:"Jun'26"},
+];
+
+// ---------- Indicadores ----------
+// vals em ordem das 8 datas; null = não medido. disp = rótulos especiais.
+const CATS = [
+  ['hemograma','Hemograma'],['metabolico','Glicemia & metabolismo'],['lipidios','Perfil lipídico'],
+  ['renal','Função renal'],['hepatico','Função hepática'],['minerais','Cálcio & minerais'],
+  ['ferro','Ferro'],['vitaminas','Vitaminas'],['tireoide','Tireoide'],['hormonios','Hormônios'],['inflamacao','Inflamação']
+];
+const M = [
+ // hemograma
+ {c:'hemograma',n:'Eritrócitos',u:'milhões/µL',min:3.8,max:5.0,v:[4.27,3.51,4.55,4.50,null,4.13,3.61,4.27]},
+ {c:'hemograma',n:'Hemoglobina',u:'g/dL',min:12.0,max:15.8,v:[12.8,10.8,13.6,13.8,null,12.3,11.0,12.6]},
+ {c:'hemograma',n:'Hematócrito',u:'%',min:36,max:46,v:[38.3,32.2,40.6,40.2,null,36.8,31.9,38.3]},
+ {c:'hemograma',n:'VCM',u:'fL',min:80,max:100,v:[89.7,91.7,89.2,89.3,null,89.1,88.4,89.7]},
+ {c:'hemograma',n:'HCM',u:'pg',min:27,max:32,v:[30.0,30.8,29.8,30.7,null,29.8,30.5,29.5]},
+ {c:'hemograma',n:'CHCM',u:'g/dL',min:32,max:36,v:[33.4,33.5,33.4,34.3,null,33.4,34.5,32.9]},
+ {c:'hemograma',n:'RDW',u:'%',min:11.9,max:15.5,v:[12.1,12.1,13.3,12.4,null,12.2,13.2,11.9]},
+ {c:'hemograma',n:'Leucócitos',u:'/µL',min:3900,max:11100,v:[6580,11600,6500,5430,null,6040,5660,6040]},
+ {c:'hemograma',n:'Neutrófilos (segmentados)',u:'/µL',min:1700,max:7500,v:[3550,8170,3445,1710,null,1812,3150,2240]},
+ {c:'hemograma',n:'Eosinófilos',u:'/µL',min:30,max:500,v:[190,180,260,270,null,242,210,240]},
+ {c:'hemograma',n:'Basófilos',u:'/µL',min:0,max:200,v:[30,50,65,40,null,0,30,50]},
+ {c:'hemograma',n:'Linfócitos',u:'/µL',min:1000,max:3200,v:[2350,2410,2340,3030,null,3745,1970,3130]},
+ {c:'hemograma',n:'Monócitos',u:'/µL',min:200,max:900,v:[460,790,390,380,null,242,300,380]},
+ {c:'hemograma',n:'Plaquetas',u:'/µL',min:150000,max:400000,v:[307000,260000,293000,249000,null,289000,226000,250000]},
+ {c:'hemograma',n:'VPM',u:'fL',min:7.9,max:12.6,v:[10.7,10.3,9.0,10.4,null,9.5,10.0,10.3]},
+ // metabolismo
+ {c:'metabolico',n:'Glicose',u:'mg/dL',min:70,max:99,v:[72,71,70,73,null,80,78,71]},
+ {c:'metabolico',n:'Hemoglobina glicada (HbA1c)',u:'%',min:null,max:5.7,v:[4.8,5.2,5.2,4.9,null,5.0,4.5,4.8]},
+ {c:'metabolico',n:'Insulina',u:'µU/mL',min:2.6,max:24.9,v:[8,7.7,2.5,8.2,null,11.7,4.0,4.6]},
+ // lipidios
+ {c:'lipidios',n:'Colesterol total',u:'mg/dL',min:null,max:190,v:[149,237,154,155,null,145,174,182]},
+ {c:'lipidios',n:'HDL',u:'mg/dL',min:40,max:null,v:[72,98,83,74,null,70.5,81,95]},
+ {c:'lipidios',n:'LDL',u:'mg/dL',min:null,max:130,v:[63,109.2,62,67.9,null,60.8,78.3,77]},
+ {c:'lipidios',n:'Triglicérides',u:'mg/dL',min:null,max:150,v:[55,139,30,46,null,48,66,35]},
+ // renal
+ {c:'renal',n:'Creatinina',u:'mg/dL',min:0.52,max:1.04,v:[0.57,0.40,0.57,0.70,null,0.72,0.46,0.69]},
+ {c:'renal',n:'Ureia',u:'mg/dL',min:15,max:43,v:[18,10,19,31,null,27,14,27]},
+ {c:'renal',n:'Ácido úrico',u:'mg/dL',min:2.5,max:6.2,v:[null,2.7,4.20,null,null,null,null,null]},
+ {c:'renal',n:'Filtração glomerular (TFG)',u:'mL/min',min:60,max:null,v:[null,139,null,120,null,null,132,119]},
+ // hepatico
+ {c:'hepatico',n:'TGO / AST',u:'U/L',min:null,max:32,v:[15,23,18,24,null,12,28,48]},
+ {c:'hepatico',n:'TGP / ALT',u:'U/L',min:null,max:33,v:[5,9,5,8,null,5,9,34]},
+ {c:'hepatico',n:'Gama-GT',u:'U/L',min:8,max:41,v:[10,10,9,13,null,6,10,13],disp:{6:'<10'}},
+ {c:'hepatico',n:'Albumina',u:'g/dL',min:3.5,max:5.2,v:[4.5,3.4,4.1,4.4,null,null,3.5,null]},
+ // minerais
+ {c:'minerais',n:'Cálcio (soro)',u:'mg/dL',min:8.4,max:10.3,v:[9.4,8.70,9.0,9.20,null,9.1,8.80,9.40]},
+ {c:'minerais',n:'Cálcio iônico',u:'mmol/L',min:1.11,max:1.32,v:[1.23,1.21,1.14,1.17,null,1.17,1.13,1.24]},
+ {c:'minerais',n:'Cálcio urina 24h (calciúria)',u:'mg/24h',min:100,max:300,v:[294,341.6,133,null,182,445,189,null]},
+ // ferro
+ {c:'ferro',n:'Ferro sérico',u:'µg/dL',min:37,max:170,v:[182,77,137,81,null,50.9,111,97]},
+ {c:'ferro',n:'Ferritina',u:'ng/mL',min:15,max:150,v:[99,9.8,11.5,49.7,null,22.3,41.4,39.2]},
+ // vitaminas
+ {c:'vitaminas',n:'Vitamina D (25-OH)',u:'ng/mL',min:20,max:60,v:[304,287,154.2,208,null,154.2,218,202],disp:{2:'>154,2',5:'>154,2'}},
+ {c:'vitaminas',n:'Vitamina B12',u:'pg/mL',min:191,max:890,v:[776,489,503,1062,null,499,595,1113]},
+ {c:'vitaminas',n:'Ácido fólico',u:'ng/mL',min:3.89,max:null,v:[null,8.20,16.87,10.90,null,10.55,15.70,11.10]},
+ // tireoide
+ {c:'tireoide',n:'TSH',u:'µUI/mL',min:0.45,max:4.30,v:[1.0,1.02,0.90,1.25,null,2.76,0.93,1.37]},
+ {c:'tireoide',n:'T4 total',u:'µg/dL',min:5.1,max:14.1,v:[8.4,6.83,9.6,6.84,null,10.2,8.16,6.43]},
+ {c:'tireoide',n:'T3 livre',u:'pg/mL',min:2.0,max:4.4,v:[null,2.54,3.02,2.97,null,4.28,2.81,3.16]},
+ {c:'tireoide',n:'Anti-TPO',u:'UI/mL',min:null,max:34,v:[34,9,0.40,9.8,null,0.30,null,13.8],disp:{0:'<34',1:'<9,0'}},
+ // hormonios
+ {c:'hormonios',n:'Cortisol (manhã)',u:'µg/dL',min:4.8,max:19.5,v:[null,27.4,7.40,15.2,null,7.53,30.9,14.8]},
+ {c:'hormonios',n:'PTH (paratormônio)',u:'pg/mL',min:12,max:65,v:[14,12.7,26,17.7,null,22,11.4,12.4]},
+ // inflamacao
+ {c:'inflamacao',n:'PCR (mg/L)',u:'mg/L',min:null,max:5,v:[2.4,14.1,2.9,1.28,null,0.7,5.64,5.0],disp:{7:'<5,0'}},
+ {c:'inflamacao',n:'VHS',u:'mm',min:null,max:20,v:[12,22,11,5,null,8,16,18]},
+ {c:'inflamacao',n:'Homocisteína',u:'µmol/L',min:null,max:14,v:[5,3.30,4.18,6.30,null,5.99,3,4.80],disp:{0:'<5',6:'<3'}},
+];
+
+// ---------- helpers ----------
+function status(m,i){const x=m.v[i]; if(x==null)return'na';
+  if(m.max!=null&&x>m.max)return'high'; if(m.min!=null&&x<m.min)return'low'; return'ok';}
+function fmt(x){if(x==null)return'—';
+  if(x>=1000)return x.toLocaleString('pt-BR');
+  return (''+x).replace('.',',');}
+function disp(m,i){if(m.disp&&m.disp[i]!=null)return m.disp[i]; return fmt(m.v[i]);}
+function refTxt(m){const a=m.min!=null?fmt(m.min):'', b=m.max!=null?fmt(m.max):'';
+  if(m.min!=null&&m.max!=null)return a+'–'+b; if(m.max!=null)return '≤ '+b; if(m.min!=null)return '≥ '+a; return '';}
+
+// ---------- KPIs ----------
+const lastIdx=7; // jun/2026
+let altLast=0,altTotal=0;
+M.forEach(m=>{const s=status(m,lastIdx); if(s=='high'||s=='low')altLast++;
+  m.v.forEach((_,i)=>{const z=status(m,i); if(z=='high'||z=='low')altTotal++;});});
+document.getElementById('kpis').innerHTML=`
+  <div class="kpi"><div class="v">8</div><div class="l">coletas analisadas</div></div>
+  <div class="kpi"><div class="v">${M.length}</div><div class="l">indicadores acompanhados</div></div>
+  <div class="kpi"><div class="v">4,3</div><div class="l">anos de histórico (2022–2026)</div></div>
+  <div class="kpi"><div class="v" style="color:var(--warn)">${altLast}</div><div class="l">alterados no último exame (jun/26)</div></div>
+  <div class="kpi"><div class="v" style="color:var(--high)">${altTotal}</div><div class="l">resultados fora da faixa (total)</div></div>`;
+
+// ---------- categorias ----------
+let activeCat='all';
+const catsEl=document.getElementById('cats');
+function mkCat(id,label){const b=document.createElement('button');b.className='cat'+(id==activeCat?' active':'');b.textContent=label;
+  b.onclick=()=>{activeCat=id;[...catsEl.children].forEach(c=>c.classList.remove('active'));b.classList.add('active');render();};catsEl.appendChild(b);}
+mkCat('all','Todos');CATS.forEach(([id,l])=>mkCat(id,l));
+
+document.getElementById('search').addEventListener('input',render);
+document.getElementById('onlyAlt').addEventListener('change',render);
+
+// ---------- tabela ----------
+function render(){
+  const q=document.getElementById('search').value.toLowerCase();
+  const onlyAlt=document.getElementById('onlyAlt').checked;
+  const thead=document.querySelector('#tbl thead'), tbody=document.querySelector('#tbl tbody');
+  thead.innerHTML='<tr><th style="text-align:left">Indicador</th><th style="text-align:left">Referência</th>'+
+    DATES.map(d=>`<th>${d.short}<div style="font-weight:400;color:var(--muted);font-size:10px">${d.label}</div></th>`).join('')+'</tr>';
+  let html='';
+  CATS.forEach(([cid,clabel])=>{
+    if(activeCat!='all'&&activeCat!=cid)return;
+    const rows=M.filter(m=>m.c==cid)
+      .filter(m=>!q||m.n.toLowerCase().includes(q))
+      .filter(m=>!onlyAlt||m.v.some((_,i)=>['high','low'].includes(status(m,i))));
+    if(!rows.length)return;
+    html+=`<tr class="catrow"><td colspan="${2+DATES.length}">${clabel}</td></tr>`;
+    rows.forEach(m=>{
+      const idx=M.indexOf(m);
+      html+=`<tr><th class="clk" onclick="plot(${idx})">${m.n} <span style="color:var(--muted);font-weight:400">(${m.u})</span></th>`+
+        `<td class="ref">${refTxt(m)}</td>`+
+        m.v.map((_,i)=>{const s=status(m,i);
+          return `<td class="cell ${s} clk" onclick="plot(${idx})" title="${DATES[i].label}">${disp(m,i)}${s=='high'?' <span class=arrow>▲</span>':s=='low'?' <span class=arrow>▼</span>':''}</td>`;
+        }).join('')+'</tr>';
+    });
+  });
+  tbody.innerHTML=html||'<tr><td colspan="10" style="padding:20px;color:var(--muted)">Nenhum indicador encontrado.</td></tr>';
+}
+
+// ---------- gráfico SVG ----------
+function plot(idx){
+  const m=M[idx];
+  document.getElementById('chTitle').textContent=m.n+' ('+m.u+')';
+  document.getElementById('chSub').textContent='Referência: '+(refTxt(m)||'—')+' · faixa verde = intervalo normal';
+  const W=Math.min(1300, Math.max(680, document.getElementById('chart').clientWidth||900)), H=340;
+  const padL=58,padR=22,padT=24,padB=46, iw=W-padL-padR, ih=H-padT-padB;
+  const pts=m.v.map((x,i)=>({x,i})).filter(p=>p.x!=null);
+  const vals=pts.map(p=>p.x);
+  let lo=Math.min(...vals), hi=Math.max(...vals);
+  if(m.min!=null)lo=Math.min(lo,m.min); if(m.max!=null)hi=Math.max(hi,m.max);
+  const span=(hi-lo)||1; lo-=span*0.12; hi+=span*0.12;
+  const X=i=>padL+(DATES.length<=1?iw/2:iw*i/(DATES.length-1));
+  const Y=v=>padT+ih-((v-lo)/(hi-lo))*ih;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px">`;
+  // ref band
+  if(m.min!=null||m.max!=null){
+    const yT=Y(m.max!=null?m.max:hi), yB=Y(m.min!=null?m.min:lo);
+    svg+=`<rect x="${padL}" y="${yT}" width="${iw}" height="${yB-yT}" fill="rgba(34,197,94,.12)" stroke="rgba(34,197,94,.4)" stroke-dasharray="3 3"/>`;
+  }
+  // y ticks
+  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4, y=Y(v);
+    svg+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#334155" stroke-width=".5"/>`+
+         `<text x="${padL-8}" y="${y+3}" text-anchor="end">${fmt(+v.toFixed(v<10?1:0))}</text>`;}
+  // x labels
+  DATES.forEach((d,i)=>{svg+=`<text x="${X(i)}" y="${H-26}" text-anchor="middle">${d.short}</text>`;});
+  // line
+  const path=pts.map((p,k)=>(k?'L':'M')+X(p.i)+' '+Y(p.x)).join(' ');
+  svg+=`<path d="${path}" fill="none" stroke="#38bdf8" stroke-width="2.2"/>`;
+  // points
+  const col={ok:'#22c55e',low:'#3b82f6',high:'#ef4444'};
+  pts.forEach(p=>{const s=status(m,p.i);
+    svg+=`<circle cx="${X(p.i)}" cy="${Y(p.x)}" r="5.5" fill="${col[s]}" stroke="#0f172a" stroke-width="1.5"><title>${DATES[p.i].label}: ${disp(m,p.i)} ${m.u}</title></circle>`+
+         `<text x="${X(p.i)}" y="${Y(p.x)-11}" text-anchor="middle" fill="#e2e8f0" style="font-size:11px;font-weight:600">${disp(m,p.i)}</text>`;});
+  svg+='</svg>';
+  document.getElementById('chart').innerHTML=svg;
+  document.querySelector('.chartbox').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+render();
+plot(M.findIndex(m=>m.n.startsWith('Cálcio urina'))); // abre no indicador-chave
+</script>
+</body>
+</html>

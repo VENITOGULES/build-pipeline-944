@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exames — Camila T. S. G. de Lima (tabela simples)</title>
+<style>
+  body{font-family:'Segoe UI',Arial,sans-serif;margin:0;padding:24px;color:#1e293b;background:#f8fafc;font-size:13px}
+  h1{font-size:20px;margin:0 0 2px}
+  .sub{color:#64748b;font-size:13px;margin-bottom:16px}
+  .legend{font-size:12px;color:#64748b;margin:8px 0 14px}
+  .sw{display:inline-block;width:11px;height:11px;border-radius:2px;vertical-align:-1px;margin:0 3px 0 10px}
+  table{border-collapse:collapse;width:100%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+  th,td{border:1px solid #e2e8f0;padding:5px 8px;text-align:center;white-space:nowrap}
+  thead th{background:#0f766e;color:#fff;font-size:12px}
+  thead th small{font-weight:400;opacity:.85;font-size:10px;display:block}
+  tbody th{text-align:left;background:#f1f5f9;font-weight:500;position:sticky;left:0}
+  td.ref{text-align:left;color:#64748b;font-size:11px;background:#fafafa}
+  .catrow td{background:#e0f2f1;color:#0f766e;font-weight:700;text-transform:uppercase;font-size:11px;text-align:left;letter-spacing:.3px}
+  .low{background:#dbeafe;color:#1e40af;font-weight:600}
+  .high{background:#fee2e2;color:#b91c1c;font-weight:600}
+  .na{color:#cbd5e1}
+  .wrap{overflow:auto}
+  .disc{margin-top:16px;font-size:11.5px;color:#92400e;background:#fef3c7;border:1px solid #fcd34d;padding:10px 12px;border-radius:6px;line-height:1.5}
+  @media print{body{padding:0;background:#fff;font-size:10px}.disc{break-inside:avoid}}
+</style>
+</head>
+<body>
+<h1>Exames laboratoriais — Camila Thaiani da Silva Gules de Lima</h1>
+<div class="sub">Nasc. 18/10/1995 · Médico: Dr. Renato Slomka · 8 coletas (fev/2022 → jun/2026) · em ordem cronológica</div>
+<div class="legend">Legenda:<span class="sw" style="background:#dbeafe;border:1px solid #1e40af"></span>abaixo da referência (▼)<span class="sw" style="background:#fee2e2;border:1px solid #b91c1c"></span>acima da referência (▲)<span class="sw" style="background:#fff;border:1px solid #cbd5e1"></span>não medido</div>
+<div class="wrap"><table id="t"></table></div>
+<div class="disc">⚠️ Organização dos laudos para visualização — não é diagnóstico nem substitui avaliação médica. Faixas de referência podem variar entre laboratórios. * coleta de 28/03/2024 contém apenas o cálcio urinário 24h.</div>
+
+<script>
+const DATES=[{s:"Fev'22",d:'14/02/2022'},{s:"Ago'22",d:'01/08/2022'},{s:"Mai'23",d:'31/05/2023'},{s:"Mar'24",d:'22/03/2024'},{s:"Mar'24*",d:'28/03/2024'},{s:"Jan'25",d:'14/01/2025'},{s:"Nov'25",d:'06/11/2025'},{s:"Jun'26",d:'18/06/2026'}];
+const CATS=[['hemograma','Hemograma'],['metabolico','Glicemia & metabolismo'],['lipidios','Perfil lipídico'],['renal','Função renal'],['hepatico','Função hepática'],['minerais','Cálcio & minerais'],['ferro','Ferro'],['vitaminas','Vitaminas'],['tireoide','Tireoide'],['hormonios','Hormônios'],['inflamacao','Inflamação']];
+const M=[
+ {c:'hemograma',n:'Eritrócitos',u:'milhões/µL',min:3.8,max:5.0,v:[4.27,3.51,4.55,4.50,null,4.13,3.61,4.27]},
+ {c:'hemograma',n:'Hemoglobina',u:'g/dL',min:12.0,max:15.8,v:[12.8,10.8,13.6,13.8,null,12.3,11.0,12.6]},
+ {c:'hemograma',n:'Hematócrito',u:'%',min:36,max:46,v:[38.3,32.2,40.6,40.2,null,36.8,31.9,38.3]},
+ {c:'hemograma',n:'VCM',u:'fL',min:80,max:100,v:[89.7,91.7,89.2,89.3,null,89.1,88.4,89.7]},
+ {c:'hemograma',n:'HCM',u:'pg',min:27,max:32,v:[30.0,30.8,29.8,30.7,null,29.8,30.5,29.5]},
+ {c:'hemograma',n:'CHCM',u:'g/dL',min:32,max:36,v:[33.4,33.5,33.4,34.3,null,33.4,34.5,32.9]},
+ {c:'hemograma',n:'RDW',u:'%',min:11.9,max:15.5,v:[12.1,12.1,13.3,12.4,null,12.2,13.2,11.9]},
+ {c:'hemograma',n:'Leucócitos',u:'/µL',min:3900,max:11100,v:[6580,11600,6500,5430,null,6040,5660,6040]},
+ {c:'hemograma',n:'Neutrófilos (segmentados)',u:'/µL',min:1700,max:7500,v:[3550,8170,3445,1710,null,1812,3150,2240]},
+ {c:'hemograma',n:'Eosinófilos',u:'/µL',min:30,max:500,v:[190,180,260,270,null,242,210,240]},
+ {c:'hemograma',n:'Basófilos',u:'/µL',min:0,max:200,v:[30,50,65,40,null,0,30,50]},
+ {c:'hemograma',n:'Linfócitos',u:'/µL',min:1000,max:3200,v:[2350,2410,2340,3030,null,3745,1970,3130]},
+ {c:'hemograma',n:'Monócitos',u:'/µL',min:200,max:900,v:[460,790,390,380,null,242,300,380]},
+ {c:'hemograma',n:'Plaquetas',u:'/µL',min:150000,max:400000,v:[307000,260000,293000,249000,null,289000,226000,250000]},
+ {c:'hemograma',n:'VPM',u:'fL',min:7.9,max:12.6,v:[10.7,10.3,9.0,10.4,null,9.5,10.0,10.3]},
+ {c:'metabolico',n:'Glicose',u:'mg/dL',min:70,max:99,v:[72,71,70,73,null,80,78,71]},
+ {c:'metabolico',n:'HbA1c',u:'%',min:null,max:5.7,v:[4.8,5.2,5.2,4.9,null,5.0,4.5,4.8]},
+ {c:'metabolico',n:'Insulina',u:'µU/mL',min:2.6,max:24.9,v:[8,7.7,2.5,8.2,null,11.7,4.0,4.6]},
+ {c:'lipidios',n:'Colesterol total',u:'mg/dL',min:null,max:190,v:[149,237,154,155,null,145,174,182]},
+ {c:'lipidios',n:'HDL',u:'mg/dL',min:40,max:null,v:[72,98,83,74,null,70.5,81,95]},
+ {c:'lipidios',n:'LDL',u:'mg/dL',min:null,max:130,v:[63,109.2,62,67.9,null,60.8,78.3,77]},
+ {c:'lipidios',n:'Triglicérides',u:'mg/dL',min:null,max:150,v:[55,139,30,46,null,48,66,35]},
+ {c:'renal',n:'Creatinina',u:'mg/dL',min:0.52,max:1.04,v:[0.57,0.40,0.57,0.70,null,0.72,0.46,0.69]},
+ {c:'renal',n:'Ureia',u:'mg/dL',min:15,max:43,v:[18,10,19,31,null,27,14,27]},
+ {c:'renal',n:'Ácido úrico',u:'mg/dL',min:2.5,max:6.2,v:[null,2.7,4.20,null,null,null,null,null]},
+ {c:'renal',n:'Filtração glomerular (TFG)',u:'mL/min',min:60,max:null,v:[null,139,null,120,null,null,132,119]},
+ {c:'hepatico',n:'TGO / AST',u:'U/L',min:null,max:32,v:[15,23,18,24,null,12,28,48]},
+ {c:'hepatico',n:'TGP / ALT',u:'U/L',min:null,max:33,v:[5,9,5,8,null,5,9,34]},
+ {c:'hepatico',n:'Gama-GT',u:'U/L',min:8,max:41,v:[10,10,9,13,null,6,10,13],disp:{6:'<10'}},
+ {c:'hepatico',n:'Albumina',u:'g/dL',min:3.5,max:5.2,v:[4.5,3.4,4.1,4.4,null,null,3.5,null]},
+ {c:'minerais',n:'Cálcio (soro)',u:'mg/dL',min:8.4,max:10.3,v:[9.4,8.70,9.0,9.20,null,9.1,8.80,9.40]},
+ {c:'minerais',n:'Cálcio iônico',u:'mmol/L',min:1.11,max:1.32,v:[1.23,1.21,1.14,1.17,null,1.17,1.13,1.24]},
+ {c:'minerais',n:'Cálcio urina 24h (calciúria)',u:'mg/24h',min:100,max:300,v:[294,341.6,133,null,182,445,189,null]},
+ {c:'ferro',n:'Ferro sérico',u:'µg/dL',min:37,max:170,v:[182,77,137,81,null,50.9,111,97]},
+ {c:'ferro',n:'Ferritina',u:'ng/mL',min:15,max:150,v:[99,9.8,11.5,49.7,null,22.3,41.4,39.2]},
+ {c:'vitaminas',n:'Vitamina D (25-OH)',u:'ng/mL',min:20,max:60,v:[304,287,154.2,208,null,154.2,218,202],disp:{2:'>154,2',5:'>154,2'}},
+ {c:'vitaminas',n:'Vitamina B12',u:'pg/mL',min:191,max:890,v:[776,489,503,1062,null,499,595,1113]},
+ {c:'vitaminas',n:'Ácido fólico',u:'ng/mL',min:3.89,max:null,v:[null,8.20,16.87,10.90,null,10.55,15.70,11.10]},
+ {c:'tireoide',n:'TSH',u:'µUI/mL',min:0.45,max:4.30,v:[1.0,1.02,0.90,1.25,null,2.76,0.93,1.37]},
+ {c:'tireoide',n:'T4 total',u:'µg/dL',min:5.1,max:14.1,v:[8.4,6.83,9.6,6.84,null,10.2,8.16,6.43]},
+ {c:'tireoide',n:'T3 livre',u:'pg/mL',min:2.0,max:4.4,v:[null,2.54,3.02,2.97,null,4.28,2.81,3.16]},
+ {c:'tireoide',n:'Anti-TPO',u:'UI/mL',min:null,max:34,v:[34,9,0.40,9.8,null,0.30,null,13.8],disp:{0:'<34',1:'<9,0'}},
+ {c:'hormonios',n:'Cortisol (manhã)',u:'µg/dL',min:4.8,max:19.5,v:[null,27.4,7.40,15.2,null,7.53,30.9,14.8]},
+ {c:'hormonios',n:'PTH (paratormônio)',u:'pg/mL',min:12,max:65,v:[14,12.7,26,17.7,null,22,11.4,12.4]},
+ {c:'inflamacao',n:'PCR (mg/L)',u:'mg/L',min:null,max:5,v:[2.4,14.1,2.9,1.28,null,0.7,5.64,5.0],disp:{7:'<5,0'}},
+ {c:'inflamacao',n:'VHS',u:'mm',min:null,max:20,v:[12,22,11,5,null,8,16,18]},
+ {c:'inflamacao',n:'Homocisteína',u:'µmol/L',min:null,max:14,v:[5,3.30,4.18,6.30,null,5.99,3,4.80],disp:{0:'<5',6:'<3'}},
+];
+function st(m,i){const x=m.v[i];if(x==null)return'na';if(m.max!=null&&x>m.max)return'high';if(m.min!=null&&x<m.min)return'low';return'ok';}
+function fmt(x){if(x==null)return'—';if(x>=1000)return x.toLocaleString('pt-BR');return(''+x).replace('.',',');}
+function dp(m,i){return m.disp&&m.disp[i]!=null?m.disp[i]:fmt(m.v[i]);}
+function ref(m){const a=m.min!=null?fmt(m.min):'',b=m.max!=null?fmt(m.max):'';return m.min!=null&&m.max!=null?a+'–'+b:m.max!=null?'≤ '+b:m.min!=null?'≥ '+a:'';}
+let h='<thead><tr><th style="text-align:left">Indicador</th><th style="text-align:left">Referência</th>'+DATES.map(d=>`<th>${d.s}<small>${d.d}</small></th>`).join('')+'</tr></thead><tbody>';
+CATS.forEach(([cid,cl])=>{h+=`<tr class="catrow"><td colspan="${2+DATES.length}">${cl}</td></tr>`;
+ M.filter(m=>m.c==cid).forEach(m=>{h+=`<tr><th>${m.n} <span style="color:#94a3b8;font-weight:400">(${m.u})</span></th><td class="ref">${ref(m)}</td>`+
+  m.v.map((_,i)=>{const s=st(m,i);return`<td class="${s}" title="${DATES[i].d}">${dp(m,i)}${s=='high'?' ▲':s=='low'?' ▼':''}</td>`;}).join('')+'</tr>';});});
+h+='</tbody>';document.getElementById('t').innerHTML=h;
+</script>
+</body>
+</html>
