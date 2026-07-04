@@ -1,0 +1,428 @@
+{
+  "model": "medium",
+  "language": "pt",
+  "language_probability": 1,
+  "duration": 325.396,
+  "segments": [
+    {
+      "start": 1.58,
+      "end": 3.58,
+      "text": "Fala Vinito, tudo certo?"
+    },
+    {
+      "start": 3.58,
+      "end": 10.58,
+      "text": "Não, cara, assim, não é nada demais, não precisa ficar ansioso ou curioso."
+    },
+    {
+      "start": 10.58,
+      "end": 15.58,
+      "text": "Não é nada demais, não. Acho que muito antecipando aqui, né?"
+    },
+    {
+      "start": 15.58,
+      "end": 21.58,
+      "text": "Muito inspirado no que vocês fizeram ali na Flickers, né?"
+    },
+    {
+      "start": 21.58,
+      "end": 28.58,
+      "text": "De buscar um diagnóstico e tentar fomentar alguma coisa aí junto a pequenas empresas."
+    },
+    {
+      "start": 28.58,
+      "end": 32.58,
+      "text": "Eu vejo uma oportunidade aqui de negócio também."
+    },
+    {
+      "start": 32.58,
+      "end": 36.58,
+      "text": "E poderia, a gente poderia explorar via Flickers, tá?"
+    },
+    {
+      "start": 38.58,
+      "end": 40.58,
+      "text": "Na parte financeira, assim, sabe?"
+    },
+    {
+      "start": 40.58,
+      "end": 45.58,
+      "text": "De conseguir estruturar uma plataforminha, alguma coisinha simples"
+    },
+    {
+      "start": 45.58,
+      "end": 51.58,
+      "text": "que apoie o pessoal em gestão financeira simples, assim, sabe?"
+    },
+    {
+      "start": 51.58,
+      "end": 54.58,
+      "text": "Daí você vai me dizer, pô, mas tem conta azul, tem..."
+    },
+    {
+      "start": 54.58,
+      "end": 57.58,
+      "text": "Contabilizei e tal."
+    },
+    {
+      "start": 57.58,
+      "end": 59.58,
+      "text": "Cara, mas acho que é mais que isso, sabe?"
+    },
+    {
+      "start": 59.58,
+      "end": 65.58,
+      "text": "É alguma forma não só do cara lançar lá e ter um RP que ele lança e tal"
+    },
+    {
+      "start": 65.58,
+      "end": 69.58,
+      "text": "e sai lá os dados financeiros, mas, pô, ter junto uma camada de serviço,"
+    },
+    {
+      "start": 69.58,
+      "end": 74.58,
+      "text": "de apoiar ele a estruturar minimamente um processo financeiro,"
+    },
+    {
+      "start": 74.58,
+      "end": 78.58,
+      "text": "tirar o próprio fundador da operação,"
+    },
+    {
+      "start": 78.58,
+      "end": 83.58,
+      "text": "exemplo aí que vocês também estão fazendo pra Alexandre, né?"
+    },
+    {
+      "start": 83.58,
+      "end": 86.58,
+      "text": "Querendo ou não, ali no diagnóstico, cara, ele gasta..."
+    },
+    {
+      "start": 86.58,
+      "end": 90.58,
+      "text": "Acho que era duas ou três horas por semana"
+    },
+    {
+      "start": 90.58,
+      "end": 94.58,
+      "text": "emitindo nota, controlando financeiro..."
+    },
+    {
+      "start": 94.58,
+      "end": 97.58,
+      "text": "E não tem visibilidade do resultado dele, sabe?"
+    },
+    {
+      "start": 97.58,
+      "end": 100.58,
+      "text": "Ele sabe mais ou menos quanto sobra no final, mas, pô,"
+    },
+    {
+      "start": 100.58,
+      "end": 103.58,
+      "text": "quanto que cada modelo de negócio dele sobra?"
+    },
+    {
+      "start": 103.58,
+      "end": 105.58,
+      "text": "O que que de fato ele tem de custo?"
+    },
+    {
+      "start": 105.58,
+      "end": 110.58,
+      "text": "Esses custos invisíveis, assim, do que que..."
+    },
+    {
+      "start": 110.58,
+      "end": 114.58,
+      "text": "O que que ele gasta de hora dele fazendo trabalho administrativo financeiro"
+    },
+    {
+      "start": 114.58,
+      "end": 120.58,
+      "text": "que ele poderia estar gerando valor pro negócio e ganhando mais dinheiro, sabe?"
+    },
+    {
+      "start": 120.58,
+      "end": 123.58,
+      "text": "Que a pouco vale mais a pena até ele ter,"
+    },
+    {
+      "start": 123.58,
+      "end": 126.58,
+      "text": "e aí aquilo que entra um pouquinho da plataforma de serviço, sabe?"
+    },
+    {
+      "start": 126.58,
+      "end": 130.58,
+      "text": "Pagar mil pila, dois mil reais por mês,"
+    },
+    {
+      "start": 130.58,
+      "end": 133.58,
+      "text": "pra ter um serviço quase de um CFO as a Service,"
+    },
+    {
+      "start": 133.58,
+      "end": 137.58,
+      "text": "que vai ajudar ele a gerenciar o negócio dele financeiramente"
+    },
+    {
+      "start": 137.58,
+      "end": 140.58,
+      "text": "e fazer essa operação financeira,"
+    },
+    {
+      "start": 140.58,
+      "end": 145.58,
+      "text": "e aí a gente trazer como plataforma essa inteligência,"
+    },
+    {
+      "start": 145.58,
+      "end": 149.58,
+      "text": "ao invés dele botar duas horas dele por semana,"
+    },
+    {
+      "start": 149.58,
+      "end": 153.58,
+      "text": "três horas por semana, que vai dar dezesseis horas no mês,"
+    },
+    {
+      "start": 153.58,
+      "end": 155.58,
+      "text": "que ele tá deixando de ganhar dois mil e tanto,"
+    },
+    {
+      "start": 155.58,
+      "end": 158.58,
+      "text": "três mil reais dando aula, entendeu?"
+    },
+    {
+      "start": 158.58,
+      "end": 162.58,
+      "text": "Ele bota mil reais por mês, mil e poucos reais por mês"
+    },
+    {
+      "start": 162.58,
+      "end": 166.58,
+      "text": "conosco na plataforma, que seja mil ou menos de mil,"
+    },
+    {
+      "start": 166.58,
+      "end": 170.58,
+      "text": "a plataforma com uma camada de serviço que daí a gente pode cobrar por hora,"
+    },
+    {
+      "start": 170.58,
+      "end": 175.58,
+      "text": "tipo uma hora de fechamento mensal mais a plataforma custa, sei lá, novecentos e noventa."
+    },
+    {
+      "start": 175.58,
+      "end": 180.58,
+      "text": "E aí mais uma hora de diagnóstico mensal de resultados, blá, blá, blá, blá,"
+    },
+    {
+      "start": 180.58,
+      "end": 182.58,
+      "text": "custa mais tanto."
+    },
+    {
+      "start": 182.58,
+      "end": 186.58,
+      "text": "A gente vai incrementando os serviços aqui,"
+    },
+    {
+      "start": 186.58,
+      "end": 191.58,
+      "text": "mas com uma camada de inteligência, de software mais serviço,"
+    },
+    {
+      "start": 191.58,
+      "end": 198.58,
+      "text": "serviço as a software, na verdade, que dizem aí que é o novo modelo aí de mercado,"
+    },
+    {
+      "start": 198.58,
+      "end": 200.58,
+      "text": "aquele dia dos olhos do mercado."
+    },
+    {
+      "start": 200.58,
+      "end": 203.58,
+      "text": "Então tem pensado muito em questões que a gente possa fazer isso,"
+    },
+    {
+      "start": 203.58,
+      "end": 206.58,
+      "text": "transformar plataformas em serviço,"
+    },
+    {
+      "start": 206.58,
+      "end": 212.58,
+      "text": "aliás, serviços em plataforma com uso de tecnologia IA,"
+    },
+    {
+      "start": 212.58,
+      "end": 216.58,
+      "text": "pra gente tentar ganhar uma recorrência e aí fazer exatamente o que vocês estão fazendo,"
+    },
+    {
+      "start": 216.58,
+      "end": 219.58,
+      "text": "identificar uma oportunidade aqui que dá pra vender o sistema,"
+    },
+    {
+      "start": 219.58,
+      "end": 223.58,
+      "text": "identificar uma oportunidade que dá pra reformular o produto e, sei lá,"
+    },
+    {
+      "start": 223.58,
+      "end": 225.58,
+      "text": "criar uma metodologia, criar um app."
+    },
+    {
+      "start": 225.58,
+      "end": 228.58,
+      "text": "Pô, tem oportunidade aqui, tá aqui, o nosso serviço."
+    },
+    {
+      "start": 228.58,
+      "end": 232.58,
+      "text": "Então entrar junto com vocês muito mais firme ali na Flickers,"
+    },
+    {
+      "start": 232.58,
+      "end": 236.58,
+      "text": "mas pensar junto contigo aí o que que tu vê de oportunidade até"
+    },
+    {
+      "start": 236.58,
+      "end": 241.58,
+      "text": "sobre isso que eu tô te falando, sobre essa camada financeira,"
+    },
+    {
+      "start": 241.58,
+      "end": 243.58,
+      "text": "até olhando pro..."
+    },
+    {
+      "start": 243.58,
+      "end": 247.58,
+      "text": "pras pessoas que tem tido contato, né, as empresas que tem tido contato,"
+    },
+    {
+      "start": 247.58,
+      "end": 249.58,
+      "text": "mas eu tô olhando pra pequenos negócios assim,"
+    },
+    {
+      "start": 249.58,
+      "end": 251.58,
+      "text": "acho que aqui é o nicho, sabe?"
+    },
+    {
+      "start": 251.58,
+      "end": 254.58,
+      "text": "Que os caras têm um contador, mas o contador não faz porra nenhuma,"
+    },
+    {
+      "start": 254.58,
+      "end": 258.58,
+      "text": "só faz escrituração lá e manda pros caras e já era, sabe?"
+    },
+    {
+      "start": 258.58,
+      "end": 261.58,
+      "text": "O cara não consegue ter alguém que apoie ele na gestão financeira."
+    },
+    {
+      "start": 261.58,
+      "end": 265.58,
+      "text": "Então pensei em abraçar um pouco dessa camada, assim."
+    },
+    {
+      "start": 265.58,
+      "end": 269.58,
+      "text": "Mas é o que eu tenho... que eu tenho pensado."
+    },
+    {
+      "start": 269.58,
+      "end": 272.58,
+      "text": "E alguns outros negócios um pouco mais robustos,"
+    },
+    {
+      "start": 272.58,
+      "end": 276.58,
+      "text": "talvez apoiar numa camada de gestão e planejamento financeiro, assim."
+    },
+    {
+      "start": 276.58,
+      "end": 278.58,
+      "text": "Um pouco mais estruturadas, né?"
+    },
+    {
+      "start": 278.58,
+      "end": 279.58,
+      "text": "Empresas com mais estruturadas,"
+    },
+    {
+      "start": 279.58,
+      "end": 285.58,
+      "text": "que os donos conseguem ter um papo mais estruturado"
+    },
+    {
+      "start": 285.58,
+      "end": 288.58,
+      "text": "e mais conceitual sobre finanças também."
+    },
+    {
+      "start": 288.58,
+      "end": 290.58,
+      "text": "Dá pra trazer uma camada de planejamento financeiro,"
+    },
+    {
+      "start": 290.58,
+      "end": 295.58,
+      "text": "de orçamento, divisão de negócios, cenários e tal."
+    },
+    {
+      "start": 295.58,
+      "end": 297.58,
+      "text": "Muito mais consultivo."
+    },
+    {
+      "start": 297.58,
+      "end": 301.58,
+      "text": "Aí um trabalho mais requintado, mais refinado,"
+    },
+    {
+      "start": 301.58,
+      "end": 309.58,
+      "text": "que daria pra ser ainda uma terceira camada de serviço aí pra ofertar também."
+    },
+    {
+      "start": 309.58,
+      "end": 311.58,
+      "text": "Mas enfim, são ideias aí."
+    },
+    {
+      "start": 311.58,
+      "end": 314.58,
+      "text": "Mas eu queria também sentir o que tu vê com relação a essa dor aí"
+    },
+    {
+      "start": 314.58,
+      "end": 319.58,
+      "text": "das pessoas que tu tem tido contato, das empresas que tem te procurado."
+    },
+    {
+      "start": 319.58,
+      "end": 324.58,
+      "text": "E como é que talvez a gente entre aí com plataforma e serviço junto, né?"
+    }
+  ]
+}
